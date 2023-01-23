@@ -1,100 +1,84 @@
 # Frontend Mentor - FAQ accordion card
 
-![Design preview for the FAQ accordion card coding challenge](./design/desktop-preview.jpg)
+## Minimum Viable Product (MVP) / Brief:
 
-## Design Notes:
+Design and build a digital version of the card game "memory".
+
+Users must be instructed how to play the game should they not already know.
+Users must be able to select one of three difficulties, easy, medium, hard, each influencing the number of cards that will be dealt and need to be matched in order to win the game. Cards must be dealt in pairs (even numbers) and all pairs must be unique.
+
+Once a difficulty is selected, the corresponding number of card pairs must be shuffled and dealt face down. The user must have the ability to select a card, at which point it must turn over, revealing its face image. The revealed card may no longer be selected by the user. They can now select a second card which will respond in the same way. The user may not select and reveal more than two cards at any given time. If the user selects non matching cards, they will turn face down again and the user may try again. If a matching pair of cards is selected, they must remain face up and unselectable. The user can then select two more cards with the same rules applied. Once the user has managed to making matching pairs from all the cards on the table, they win and the game is over.
+
+Upon completing the game the user is congratulated, presented with the difficulty played and number of turns it took them to win and offered another game. Should they agree they are asked to reselct difficult. Should they not they are directed back to the home screen.
+
+The user must be able to select from an in game menu that gives them options to start a new game, read how to play, quit the current game. If the user selects "new game" or "quit game" they must be prompted with a warning asking if they are sure, because selecting either of these will terminate and lose the progress of their current game.
+When the ingame menu is open, the user must not be able to play the game (select and reveal cards), they can only do so once the menu is closed again.
+
+Include option to view credits in menu.
+
+## Extras (To be added in later iterations):
+
+Game has music and sound effects that user can independantly adjust by changing volume or muting and unmuting.
+
+Cards animate from floor of background onto wall where game is played.
+
+Music notes animate up from character on right hand side of background image.
+
+Local memory of best score presented upon game completion.
+
+## Design:
+
+![Design preview for the FAQ accordion card coding challenge](./design/desktop-preview.jpg)
 
 - Game can only be played in landscape, irrespective of device.
 
 - Do I to increase the left/ right margin space on mobile to account for speaker/ front camera?
 
-## Development Notes:
+## Development:
 
-- Opening game menu pauses game
+### Approach:
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+I've chosen to build this project exclusively with vanilla JS.
+I have made this choice as a learning exercise rather than because it is what I consider best practice. There are various functions and features that I think would be optimised by a different approach, such as using toggle classes and css selectors to show and hide home screen buttons or control ingame menu opening and closing, instead of creating and removing elements from the DOM using JS. But my previous build (TwoAngels website) was light of JS and heavy on HTML and CSS, and I think it will be most beneficial for me to use this project as an opertunity to practice and showcase my vanilla JS tools instead.
 
-**To do this challenge, you need a basic understanding of HTML, CSS and JavaScript.**
+### Pseudo Code:
 
-## The challenge
+- index.html:
 
-Your challenge is to build out this FAQ accordion card and get it looking as close to the design as possible.
+  - doctype html
+  - head
+  - body
+  - main with background image of childs room
 
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
+- on page load:
 
-Your users should be able to:
+  - renderHomeOptions(): Two buttons ("New Game" and "How to play" each with a click listener)
 
-- View the optimal layout for the component depending on their device's screen size
-- See hover states for all interactive elements on the page
-- Hide/Show the answer to a question when the question is clicked
-- **Bonus**: Complete the challenge without using JavaScript
+  - Note for below funcdtionality: "Perhaps a remove elements function to remove any unwanted elements at the beginning of various renderFunctions?
 
-Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
+    - "How to play": When clicked, removeHomeOptions() and renderhowToPlay(), when closed renderHomeOptions()
 
-## Where to find everything
+    - "New Game": When clicked, removeHomeOptions() and renderDifficultyOptions( easy, medium, hard)
+      - easy/medium/hard: When clicked, removeHomeOptions(),
+        populateBoard(
+        shuffleDeck(), dealCards(), renderMenu(), renderMovesCounter()
+        )
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design.
+- CardDeckDataType =
+  [
+  {
+  cardName: "animal name",
+  faceImage: url("./images/animalNameImage"),
+  backImage: url("./images/cardBackground)
+  },
+  {
+  cardName: "animal name",
+  faceImage: url("./images/animalNameImage"),
+  backImage: url("./images/cardBackground)
+  }
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`.
+]
 
-If you would like the design files (we provide Sketch & Figma versions) to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+### Note:
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
-
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
-
-## Building your project
-
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
-
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
-
-## Deploying your project
-
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
-
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
-
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
-
-## Create a custom `README.md`
-
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
-
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
-
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
-
-## Submitting your solution
-
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
-
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
-
-## Sharing your solution
-
-There are multiple places you can share your solution:
-
-1. Share your solution page in the **#finished-projects** channel of the [Slack community](https://www.frontendmentor.io/slack).
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
-
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback.
-
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
-
-## Got feedback for us?
-
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
-
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
-
-**Have fun building!** 🚀
+- BEM naming convention
