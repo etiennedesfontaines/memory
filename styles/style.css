@@ -240,22 +240,35 @@ html {
   position: relative;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  -webkit-transition: -webkit-transform 2s;
-  transition: -webkit-transform 2s;
-  transition: transform 2s;
-  transition: transform 2s, -webkit-transform 2s;
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
   cursor: pointer;
 }
 
+.card--flip-card {
+  -webkit-animation: flipCard 2s 1 alternate forwards;
+          animation: flipCard 2s 1 alternate forwards;
+}
+
 .card--flipped {
-  -webkit-animation: flipCardForward 0.5s forwards;
-          animation: flipCardForward 0.5s forwards;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  pointer-events: none;
+}
+
+.card--click-event-disabled {
+  pointer-events: none;
 }
 
 .card__face, .card__back {
   position: absolute;
   height: 100%;
   width: 100%;
+  pointer-events: none;
 }
 
 .card__back {
@@ -263,46 +276,41 @@ html {
           backface-visibility: hidden;
 }
 
-@-webkit-keyframes flipCardForward {
+@-webkit-keyframes flipCard {
   0% {
-    -webkit-transform: scale(1) rotateY(0deg);
-            transform: scale(1) rotateY(0deg);
+    -webkit-transform: rotateY(0deg) scale(1);
+            transform: rotateY(0deg) scale(1);
   }
   25% {
-    -webkit-transform: scale(1.2) rotateY(0deg);
-            transform: scale(1.2) rotateY(0deg);
+    -webkit-transform: rotateY(0deg) scale(1.2);
+            transform: rotateY(0deg) scale(1.2);
   }
   50% {
-    -webkit-transform: scale(1.2) rotateY(180deg);
-            transform: scale(1.2) rotateY(180deg);
+    -webkit-transform: rotateY(180deg) scale(1.2);
+            transform: rotateY(180deg) scale(1.2);
   }
   100% {
-    -webkit-transform: scale(1) rotateY(180deg);
-            transform: scale(1) rotateY(180deg);
+    -webkit-transform: rotateY(180deg) scale(1);
+            transform: rotateY(180deg) scale(1);
   }
 }
 
-@keyframes flipCardForward {
+@keyframes flipCard {
   0% {
-    -webkit-transform: scale(1) rotateY(0deg);
-            transform: scale(1) rotateY(0deg);
+    -webkit-transform: rotateY(0deg) scale(1);
+            transform: rotateY(0deg) scale(1);
   }
   25% {
-    -webkit-transform: scale(1.2) rotateY(0deg);
-            transform: scale(1.2) rotateY(0deg);
+    -webkit-transform: rotateY(0deg) scale(1.2);
+            transform: rotateY(0deg) scale(1.2);
   }
   50% {
-    -webkit-transform: scale(1.2) rotateY(180deg);
-            transform: scale(1.2) rotateY(180deg);
+    -webkit-transform: rotateY(180deg) scale(1.2);
+            transform: rotateY(180deg) scale(1.2);
   }
   100% {
-    -webkit-transform: scale(1) rotateY(180deg);
-            transform: scale(1) rotateY(180deg);
+    -webkit-transform: rotateY(180deg) scale(1);
+            transform: rotateY(180deg) scale(1);
   }
-}
-
-.flipped {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
 }
 /*# sourceMappingURL=style.css.map */

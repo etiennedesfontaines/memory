@@ -107,28 +107,15 @@ const shuffleCards = (cards) => {
 };
 
 const closeMenu = (menu) => {
-	console.log("children", menu.children);
-	console.log("childNodes", menu.childNodes);
-	for (let i = 0; i < menu.children.length; i++) {
-		console.log(menu.children[i]);
-		menu.children[i].remove();
-	}
+	console.log("close menu function is fucked, please resolve");
 };
 
 const renderMenuOptions = (menu) => {
-	//This function should perhaps be open menu?
-	console.log("renderMenuOptions triggered");
-
 	const menuOptions = document.createElement("ul");
 	const newGameOption = document.createElement("li");
 	const howToPlayOption = document.createElement("li");
 	const quiteGameOption = document.createElement("li");
 	const closeMenuButton = document.createElement("btn");
-
-	closeMenuButton.addEventListener("click", () => {
-		console.log("closeMenuButton triggered");
-		closeMenu(menu);
-	});
 
 	menuOptions.classList.add("memory-game__menu-options");
 	newGameOption.classList.add("memory-game__menu-option");
@@ -142,10 +129,13 @@ const renderMenuOptions = (menu) => {
 	closeMenuButton.innerHTML = "x";
 
 	menuOptions.append(newGameOption, howToPlayOption, quiteGameOption);
-
-	menu.append(menuOptions, closeMenuButton);
+	menu.append(closeMenuButton, menuOptions);
 
 	//functionality
+
+	closeMenuButton.addEventListener("click", () => {
+		closeMenu(menu);
+	});
 
 	newGameOption.addEventListener("click", () => {
 		const newGameWarning = document.createElement("h3");
@@ -194,6 +184,10 @@ const renderMenuOptions = (menu) => {
 	});
 };
 
+const listner = (event) => {
+	event.animationName = "";
+};
+
 const newGame = (difficulty) => {
 	const gameScreen = document.querySelector("main");
 	const menu = document.createElement("div");
@@ -214,7 +208,8 @@ const newGame = (difficulty) => {
 	heading.innerHTML = "Menu";
 	turnCounter.innerHTML = `Moves: ${turnCount}`;
 
-	menu.append(heading);
+	menu.appendChild(heading);
+
 	gameScreen.append(menu, cardContainer, turnCounter);
 
 	cards.forEach((crd) => {
@@ -235,25 +230,58 @@ const newGame = (difficulty) => {
 
 		cardContainer.appendChild(card);
 
+		// functionality
+
 		card.addEventListener("click", () => {
-			card.classList.add("card--flipped");
+			// card.addEventListener(
+			// 	"animationend",
+			// 	function () {
+			// 		card.animationName = "";
+			// 	},
+			// 	false
+			// );
+			card.classList.toggle("card--flipped");
+			// card.classList.add("card--flip-card");
 			userCardSelection.push(card);
-			// I need to remove the event listener
 			if (userCardSelection.length === 2) {
-				if (
-					userCardSelection[0].dataset.id === userCardSelection[1].dataset.id
-				) {
+				turnCount++;
+				turnCounter.innerHTML = `Moves: ${turnCount}`;
+				const cards = document.querySelectorAll(".card");
+				cards.forEach((card) =>
+					card.classList.toggle("card--click-event-disabled")
+				);
+				let cardsMatch = userCardSelection[0].dataset.id === userCardSelection[1].dataset.id; //prettier-ignore
+				if (cardsMatch) {
 					userCardMatches = [...userCardMatches, ...userCardSelection];
+					userCardSelection = [];
+					cards.forEach((card) =>
+						card.classList.toggle("card--click-event-disabled")
+					);
 				}
-				userCardSelection = [];
 				setTimeout(() => {
-					console.log("cards unflipped");
-					// I need to read the event listener
-				}, "2000");
+					if (!cardsMatch) {
+						userCardSelection.forEach((card) => {
+							card.classList.toggle("card--flipped");
+						});
+
+						cards.forEach((card) =>
+							card.classList.toggle("card--click-event-disabled")
+						);
+						userCardSelection = [];
+					}
+				}, "1500");
+				if (userCardMatches.length === cards.length) {
+					console.log("You have won the game");
+					//renderHomeScreen
+					//renderCongratulationsWindow
+					// yes/no close congrats window
+					// yes - renderDifficultyOptions
+					// NO - renderHomeScreenButtons
+				}
 			}
 		});
 	});
-	// functionality
+
 	heading.addEventListener("click", () => {
 		renderMenuOptions(menu);
 	});
