@@ -110,6 +110,8 @@ Include option to view credits in menu.
 
 - clickable element shudder to show they can be interacted with
 
+- Consider lives: A limited amount of turns to try match all cards, dictated by difficulty and able to be turned on an off in settings.
+
 ## Design:
 
 - write out design brief and illustration brief, populating each with sourced images.
@@ -176,3 +178,5 @@ I have made this choice as a learning exercise rather than because it is what I 
 - Should clicking menu option a second time remove menu options or just do nothing? If nothing, remove cursor: pointer when menu is open.
 
 - closeMenu is not working.
+
+- Moves counter causes layout shift on update.

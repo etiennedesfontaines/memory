@@ -151,8 +151,6 @@ html {
 		gap: 1.6rem;
 		margin: 1.6rem 0rem 1.6rem 0rem;
 		perspective: 1000px;
-
-		// background-color: lightblue;
 	}
 
 	&__turn-counter {
@@ -180,11 +178,22 @@ html {
 .card {
 	position: relative;
 	transform-style: preserve-3d;
-	transition: transform 2s;
+	transition: transform 1s;
+	//box-shadow: color x y blur;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
 	cursor: pointer;
 
+	&--flip-card {
+		animation: flipCard 2s 1 alternate forwards;
+	}
+
 	&--flipped {
-		animation: flipCardForward 0.5s forwards;
+		transform: rotateY(180deg);
+		pointer-events: none;
+	}
+
+	&--click-event-disabled {
+		pointer-events: none;
 	}
 
 	&__face,
@@ -192,27 +201,28 @@ html {
 		position: absolute;
 		height: 100%;
 		width: 100%;
+		pointer-events: none;
 	}
 	&__back {
 		backface-visibility: hidden;
 	}
 }
 
-@keyframes flipCardForward {
+@keyframes flipCard {
 	0% {
-		transform: scale(1) rotateY(0deg);
+		transform: rotateY(0deg) scale(1);
 	}
 	25% {
-		transform: scale(1.2) rotateY(0deg);
+		transform: rotateY(0deg) scale(1.2);
 	}
 	50% {
-		transform: scale(1.2) rotateY(180deg);
+		transform: rotateY(180deg) scale(1.2);
 	}
 	100% {
-		transform: scale(1) rotateY(180deg);
+		transform: rotateY(180deg) scale(1);
 	}
 }
 
-.flipped {
-	transform: rotateY(180deg);
-}
+// .flipped {
+// 	transform: rotateY(180deg);
+// }
