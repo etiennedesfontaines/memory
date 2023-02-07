@@ -75,6 +75,7 @@ Include option to view credits in menu.
 
   - Menu: clicking pauses game and reveals menu options.
     - cards greyed out and non clickable.
+    - moves counter greyed out
     - menu options:
       - new game: clicking reveals warning in menu bar: are you sure?
         - yes: game is ended, user is redirected to select difficulty screen.
@@ -180,3 +181,31 @@ I have made this choice as a learning exercise rather than because it is what I 
 - closeMenu is not working.
 
 - Moves counter causes layout shift on update.
+
+- When selecting the Quit option from the ingame menu, confirming quit no longer works when you have denied it once.
+
+- cards are lagging when loading, exposing front face before game has begun - further image optimisation needed?
+  The problem seems to worsen as more cards need to be loaded.
+
+- some functions run to create elements at times when they arent needed, then remove functions for those are automatically run to remove them. e.g end of Game and closeWindow. Better to only run homeScreenOptions func when it is needed - using a conditional to control this will likely work.
+
+//Below is the implementation to change selectCardsForGame functionality to prevent the need to shuffle the cards twice.
+
+// const length = 10;
+// const randomNum = Math.floor(Math.random() length + 1);
+//remove selected element
+// run again but against new array length
+
+//Math.floor(Math.random() array.length + 1);
+
+//[]
+// const closeSubMenu = (elementsToDelete) => {
+// elementsToDelete.forEach((className) => {
+// const domElement = document.querySelector(className);
+// if (domElement) {
+// domElement.remove();
+// } else {
+// throw new Error(`domElement with ${className} not found!`);
+// }
+// });
+// };

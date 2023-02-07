@@ -13,8 +13,21 @@ html {
   color: #372602;
 }
 
+.line-break {
+  display: block;
+  margin-bottom: 4rem;
+}
+
 .memory-game {
+  height: 100vh;
+  background-image: url(../illustrations/background/background-01.png);
+  background-size: cover;
+  background-position: bottom;
+}
+
+.memory-game__home-screen {
   position: relative;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -28,14 +41,10 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  min-height: 100vh;
-  min-width: 100vw;
-  background-image: url(../illustrations/background/background-01.png);
-  background-size: cover;
-  background-position: bottom;
 }
 
-.memory-game--game-screen {
+.memory-game__in-game-screen {
+  height: 100%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 3fr 1fr;
@@ -51,13 +60,13 @@ html {
           transform: translateY(-15vh);
 }
 
-.memory-game__banner--top {
+.memory-game__banner--position-top {
   -webkit-transform: translateY(-38vh);
           transform: translateY(-38vh);
 }
 
-.memory-game__banner--top > .memory-game__title,
-.memory-game__banner--top .memory-game__subtitle {
+.memory-game__banner--position-top > .memory-game__title,
+.memory-game__banner--position-top .memory-game__subtitle {
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
 }
@@ -72,7 +81,7 @@ html {
   font-size: 3.2rem;
 }
 
-.memory-game__btn-container {
+.memory-game__home-screen-options-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -81,7 +90,7 @@ html {
           transform: translateY(5vh);
 }
 
-.memory-game__btn {
+.memory-game__home-screen-option {
   font-family: "Give You Glory", cursive;
   font-size: 3.2rem;
   background: none;
@@ -89,9 +98,47 @@ html {
   cursor: pointer;
 }
 
-.memory-game__difficulty-menu-window {
+.memory-game__difficulty-options-window {
   position: relative;
   width: 56rem;
+}
+
+.memory-game__difficulty-options-list {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.6rem;
+}
+
+.memory-game__difficulty-option {
+  font-family: "Give You Glory", cursive;
+  font-size: 3.2rem;
+  cursor: pointer;
+}
+
+.memory-game__how-to-play-window {
+  position: relative;
+  width: 82.4rem;
+  -webkit-transform: translateY(6vh);
+          transform: translateY(6vh);
+}
+
+.memory-game__how-to-play-window--game-menu {
+  width: revert;
+  -webkit-transform: revert;
+          transform: revert;
+}
+
+.memory-game__how-to-play-description {
+  font-size: 2.4rem;
 }
 
 .memory-game__heading {
@@ -99,6 +146,10 @@ html {
   font-family: "Give You Glory", cursive;
   font-size: 4.8rem;
   padding-bottom: 2.4rem;
+}
+
+.memory-game__heading--game-menu {
+  text-align: left;
 }
 
 .memory-game__close-btn {
@@ -129,43 +180,6 @@ html {
   top: 1.6rem;
 }
 
-.memory-game__difficulty-menu {
-  list-style: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 1.6rem;
-}
-
-.memory-game__difficulty-menu-option {
-  font-family: "Give You Glory", cursive;
-  font-size: 3.2rem;
-  cursor: pointer;
-}
-
-.memory-game__how-to-play-window {
-  position: relative;
-  width: 82.4rem;
-  -webkit-transform: translateY(6vh);
-          transform: translateY(6vh);
-}
-
-.memory-game__description {
-  font-size: 2.4rem;
-}
-
-.memory-game__description-line-break {
-  display: block;
-  margin-bottom: 4rem;
-}
-
 .memory-game__menu {
   position: relative;
   -ms-grid-column: 1;
@@ -192,6 +206,10 @@ html {
   cursor: pointer;
 }
 
+.memory-game__menu-heading--menu-open {
+  pointer-events: none;
+}
+
 .memory-game__card-container {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
@@ -212,6 +230,12 @@ html {
           perspective: 1000px;
 }
 
+.memory-game__card-container--game-paused {
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
+  pointer-events: none;
+}
+
 .memory-game__turn-counter {
   font-size: 4.8rem;
   -ms-grid-column-align: end;
@@ -222,18 +246,45 @@ html {
   padding: 1.6rem;
 }
 
-.memory-game__warning {
-  font-size: 4.8rem;
-  font-weight: 100;
+.memory-game__turn-counter--game-paused {
+  -webkit-filter: blur(3px);
+          filter: blur(3px);
 }
 
-.memory-game__decision-btn {
+.memory-game__user-action-warning {
   font-size: 4.8rem;
+  font-weight: 100;
+  margin-bottom: 2.4rem;
+}
+
+.memory-game__decision-option {
+  font-size: 5.6rem;
   font-weight: 100;
   border: none;
   background: none;
   font-family: "Give You Glory", cursive;
   cursor: pointer;
+}
+
+.memory-game__decision-option--confirm {
+  margin-right: 4.8rem;
+}
+
+.memory-game__end-of-game-window {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.memory-game__result {
+  font-size: 3.2rem;
 }
 
 .card {
@@ -249,14 +300,7 @@ html {
   cursor: pointer;
 }
 
-.card--flip-card {
-  -webkit-animation: flipCard 2s 1 alternate forwards;
-          animation: flipCard 2s 1 alternate forwards;
-}
-
 .card--flipped {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
   pointer-events: none;
 }
 
@@ -274,6 +318,7 @@ html {
 .card__back {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+  visibility: hidden;
 }
 
 @-webkit-keyframes flipCard {

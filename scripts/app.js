@@ -3,6 +3,7 @@ let userCardSelection = [];
 let userCardMatches = [];
 
 const documentBody = document.querySelector("body");
+// const cardFlipAudio = new Audio("../sounds/card-flip-02.wav");
 const getCards = () => [
 	{
 		cardName: "aardvark",
@@ -10,83 +11,83 @@ const getCards = () => [
 		id: 1,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "badger",
 		faceImage: "../illustrations/card-decks/patchwork-animals/badger.png",
 		id: 2,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "chiwawa",
 		faceImage: "../illustrations/card-decks/patchwork-animals/chiwawa.png",
 		id: 3,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "duck",
 		faceImage: "../illustrations/card-decks/patchwork-animals/duck.png",
 		id: 4,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "fox",
 		faceImage: "../illustrations/card-decks/patchwork-animals/fox.png",
 		id: 5,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "frog",
 		faceImage: "../illustrations/card-decks/patchwork-animals/frog.png",
 		id: 6,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "highland cow",
 		faceImage: "../illustrations/card-decks/patchwork-animals/highland-cow.png",
 		id: 7,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "koala",
 		faceImage: "../illustrations/card-decks/patchwork-animals/koala.png",
 		id: 8,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "lama",
 		faceImage: "../illustrations/card-decks/patchwork-animals/lama.png",
 		id: 9,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "monster",
 		faceImage: "../illustrations/card-decks/patchwork-animals/monster.png",
 		id: 10,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "panda",
 		faceImage: "../illustrations/card-decks/patchwork-animals/panda.png",
 		id: 11,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "penguin",
 		faceImage: "../illustrations/card-decks/patchwork-animals/penguin.png",
 		id: 12,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "rabbit",
 		faceImage: "../illustrations/card-decks/patchwork-animals/rabbit.png",
 		id: 13,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "reindeer",
 		faceImage: "../illustrations/card-decks/patchwork-animals/reindeer.png",
 		id: 14,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "scotty",
 		faceImage: "../illustrations/card-decks/patchwork-animals/scotty.png",
 		id: 15,
 	},
 	{
-		cardName: "aardvark",
+		cardName: "teddy",
 		faceImage: "../illustrations/card-decks/patchwork-animals/teddy.png",
 		id: 16,
 	},
 ];
 
-const selectCards = (cards, difficulty) => {
+const selectCardsForGame = (cards, difficulty) => {
 	switch (difficulty) {
 		case "Easy":
 			return [...cards.slice(8), ...cards.slice(8)];
@@ -100,17 +101,83 @@ const selectCards = (cards, difficulty) => {
 	}
 };
 
-//Talk through this shuffle function with Chim
 const shuffleCards = (cards) => {
 	cards.sort(() => Math.random() - 0.5);
 	return cards;
 };
 
-const closeMenu = (menu) => {
-	console.log("close menu function is fucked, please resolve");
+const renderEndOfGameWindow = (homeScreen) => {
+	const endOfGameWindow = document.createElement("div");
+	const heading = document.createElement("h2");
+	const result = document.createElement("p");
+	//playAgainHeading ?
+	const optionsHeading = document.createElement("h3");
+	const playAgainOptionsContainer = document.createElement("div");
+	const confirmOption = document.createElement("btn");
+	const declineOption = document.createElement("btn");
+
+	heading.innerHTML = "ConrRatulAtioNs!";
+	result.innerHTML = `You matched all pairs in ${turnCount} turns.`;
+	optionsHeading.innerHTML = "Would you like to Play again?";
+	confirmOption.innerHTML = "Yes!";
+	declineOption.innerHTML = "No!";
+
+	endOfGameWindow.classList.add("memory-game__end-of-game-window", "window");
+	heading.classList.add("memory-game__heading");
+	result.classList.add("memory-game__result");
+	optionsHeading.classList.add("memory-game__heading");
+	confirmOption.classList.add("memory-game__decision-option","memory-game__decision-option--confirm"); //prettier-ignore
+	declineOption.classList.add("memory-game__decision-option");
+
+	playAgainOptionsContainer.append(confirmOption, declineOption);
+	endOfGameWindow.append(
+		heading,
+		result,
+		optionsHeading,
+		playAgainOptionsContainer
+	);
+	homeScreen.append(endOfGameWindow);
+	turnCount = 0;
+	userCardMatches = [];
+
+	//functionality
+	confirmOption.addEventListener("click", () => {
+		closeWindow();
+		removeHomeScreenOptions();
+		positionBanner();
+		renderDifficultyOptions(homeScreen);
+	});
+	declineOption.addEventListener("click", () => {
+		closeWindow();
+	});
 };
 
-const renderMenuOptions = (menu) => {
+const pauseGame = () => {
+	const cardContainer = document.querySelector(".memory-game__card-container");
+	const turnCounter = document.querySelector(".memory-game__turn-counter");
+	cardContainer.classList.add("memory-game__card-container--game-paused");
+	turnCounter.classList.add("memory-game__turn-counter--game-paused");
+};
+
+const resumeGame = () => {
+	const cardContainer = document.querySelector(".memory-game__card-container");
+	const turnCounter = document.querySelector(".memory-game__turn-counter");
+	cardContainer.classList.remove("memory-game__card-container--game-paused");
+	turnCounter.classList.remove("memory-game__turn-counter--game-paused");
+};
+
+const closeMenu = (menu, ...args) => {
+	const elementsToKeep = [...args];
+	for (let i = 0; i < menu.childNodes.length; i++) {
+		const childNode = menu.childNodes[i];
+		if (!elementsToKeep.includes(childNode.classList.value)) {
+			menu.removeChild(childNode);
+			i--;
+		}
+	}
+};
+
+const renderMenuOptions = (menu, inGameScreen) => {
 	const menuOptions = document.createElement("ul");
 	const newGameOption = document.createElement("li");
 	const howToPlayOption = document.createElement("li");
@@ -134,83 +201,158 @@ const renderMenuOptions = (menu) => {
 	//functionality
 
 	closeMenuButton.addEventListener("click", () => {
-		closeMenu(menu);
+		const menuHeading = document.querySelector(".memory-game__menu-heading");
+		closeMenu(
+			menu,
+			"memory-game__menu-heading memory-game__menu-heading--menu-open"
+		);
+		menuHeading.classList.toggle("memory-game__menu-heading--menu-open");
+		resumeGame();
 	});
 
 	newGameOption.addEventListener("click", () => {
 		const newGameWarning = document.createElement("h3");
-		const acceptButton = document.createElement("button");
-		const declineButton = document.createElement("button");
+		const confirmOption = document.createElement("button");
+		const declineOption = document.createElement("button");
 
 		newGameWarning.innerHTML = "Are you sure You want to start a new game?";
-		acceptButton.innerHTML = "Yes";
-		declineButton.innerHTML = "No!";
+		confirmOption.innerHTML = "Yes!";
+		declineOption.innerHTML = "No!";
 
-		newGameWarning.classList.add("memory-game__warning");
-		acceptButton.classList.add("memory-game__decision-btn");
-		declineButton.classList.add("memory-decision-btn");
+		newGameWarning.classList.add("memory-game__user-action-warning");
+		confirmOption.classList.add(
+			"memory-game__decision-option",
+			"memory-game__decision-option--confirm"
+		);
+		declineOption.classList.add("memory-game__decision-option");
 
-		menu.append(newGameWarning, acceptButton, declineButton);
+		closeMenu(
+			menu,
+			"memory-game__menu-heading memory-game__menu-heading--menu-open",
+			"memory-game__close-btn memory-game__close-btn--game-menu"
+		);
 
-		//Add functionality to accept and decline buttons (newGame and Quit)
+		menu.append(newGameWarning, confirmOption, declineOption);
+
+		//functionality
+
+		declineOption.addEventListener("click", () => {
+			closeMenu(
+				menu,
+				"memory-game__menu-heading memory-game__menu-heading--menu-open"
+			);
+			renderMenuOptions(menu);
+		});
+		confirmOption.addEventListener("click", () => {
+			const memoryGame = document.querySelector(".memory-game");
+			const inGameScreen = document.querySelector(".memory-game__in-game-screen"); //prettier-ignore
+			inGameScreen.remove();
+			renderHomeScreen(memoryGame);
+			const homeScreen = document.querySelector(".memory-game__home-screen");
+			removeHomeScreenOptions();
+			positionBanner();
+			renderDifficultyOptions(homeScreen);
+		});
 	});
 
 	howToPlayOption.addEventListener("click", () => {
 		const howToPlayWindow = document.createElement("div");
 		const closeWindowButton = document.createElement("button");
 		const heading = document.createElement("h3");
-		const description = document.createElement("p");
+		const howToPlayDescription = document.createElement("p");
 
+		closeWindowButton.innerHTML = "x";
 		heading.innerHTML = "How To PlaY:";
-		description.innerHTML =
-			"The goal of the game is to match cards with the same images. You may only turn over two cards at a time. If you correctly match a pair of cards, you recieve a point and the cards remain face up. If you turn over an unmatching pair, they will be turned face down again and you may try again. Match all card pairs to win the game.";
-		howToPlayWindow.append(closeWindowButton, heading, description);
+		howToPlayDescription.innerHTML = "The goal of the game is to match cards with the same images. You may only turn over two cards at a time. If you correctly match a pair of cards, you recieve a point and the cards remain face up. If you turn over an unmatching pair, they will be turned face down again and you may try again. Match all card pairs to win the game."; //prettier-ignore
+
+		howToPlayWindow.classList.add("memory-game__how-to-play-window","memory-game__how-to-play-window--game-menu"); //prettier-ignore
+		closeWindowButton.classList.add("memory-game__close-btn");
+		heading.classList.add("memory-game__heading", "memory-game__heading--game-menu") //prettier-ignore
+		howToPlayDescription.classList.add("memory-game__how-to-play-description");
+
+		closeMenu(
+			menu,
+			"memory-game__menu-heading memory-game__menu-heading--menu-open",
+			"memory-game__close-btn memory-game__close-btn--game-menu"
+		);
+
+		howToPlayWindow.append(closeWindowButton, heading, howToPlayDescription);
 		menu.append(howToPlayWindow);
+
+		//functionality
+		closeWindowButton.addEventListener("click", () => {
+			closeMenu(
+				menu,
+				"memory-game__menu-heading memory-game__menu-heading--menu-open",
+				"memory-game__close-btn memory-game__close-btn--game-menu"
+			);
+			renderMenuOptions(menu);
+		});
 	});
+
 	quiteGameOption.addEventListener("click", () => {
 		const quiteGameWarning = document.createElement("h3");
-		const acceptButton = document.createElement("button");
-		const declineButton = document.createElement("button");
+		const confirmOption = document.createElement("button");
+		const declineOption = document.createElement("button");
 
 		quiteGameWarning.innerHTML = "Are you sure You want to quit game?";
-		acceptButton.innerHTML = "Yes!";
-		declineButton.innerHTML = "No!";
+		confirmOption.innerHTML = "Yes!";
+		declineOption.innerHTML = "No!";
 
-		quiteGameWarning.classList.add("memory-game__warning");
-		acceptButton.classList.add("memory-decision-btn");
-		declineButton.classList.add("memory-decision-btn");
+		quiteGameWarning.classList.add("memory-game__user-action-warning");
+		confirmOption.classList.add(
+			"memory-game__decision-option",
+			"memory-game__decision-option--confirm"
+		);
+		declineOption.classList.add("memory-game__decision-option");
 
-		menu.append(quiteGameWarning, acceptButton, declineButton);
+		closeMenu(
+			menu,
+			"memory-game__menu-heading memory-game__menu-heading--menu-open",
+			"memory-game__close-btn memory-game__close-btn--game-menu"
+		);
+
+		menu.append(quiteGameWarning, confirmOption, declineOption);
+
+		//functionality
+		declineOption.addEventListener("click", () => {
+			closeMenu(
+				menu,
+				"memory-game__menu-heading memory-game__menu-heading--menu-open"
+			);
+			renderMenuOptions(menu);
+		});
+		confirmOption.addEventListener("click", () => {
+			const memoryGame = document.querySelector(".memory-game");
+			const inGameScreen = document.querySelector(".memory-game__in-game-screen"); //prettier-ignore
+			inGameScreen.remove();
+			renderHomeScreen(memoryGame);
+		});
 	});
 };
 
-const listner = (event) => {
-	event.animationName = "";
-};
-
-const newGame = (difficulty) => {
-	const gameScreen = document.querySelector("main");
+const newGame = (difficulty, homeScreen) => {
+	const memoryGame = document.querySelector(".memory-game");
+	const inGameScreen = document.createElement("div");
 	const menu = document.createElement("div");
-	const heading = document.createElement("h2");
+	const menuHeading = document.createElement("h2");
 	const cardContainer = document.createElement("div");
-	const cards = shuffleCards(selectCards(shuffleCards(getCards()), difficulty));
-
+	const cards = shuffleCards(selectCardsForGame(shuffleCards(getCards()), difficulty)); //prettier-ignore
 	const turnCounter = document.createElement("p");
 
-	gameScreen.innerHTML = "";
-	gameScreen.classList.add("memory-game--game-screen");
+	inGameScreen.classList.add("memory-game__in-game-screen");
 	menu.classList.add("memory-game__menu");
-
-	heading.classList.add("memory-game__menu-heading");
+	menuHeading.classList.add("memory-game__menu-heading");
 	cardContainer.classList.add("memory-game__card-container");
 	turnCounter.classList.add("memory-game__turn-counter");
 
-	heading.innerHTML = "Menu";
+	menuHeading.innerHTML = "Menu";
 	turnCounter.innerHTML = `Moves: ${turnCount}`;
 
-	menu.appendChild(heading);
-
-	gameScreen.append(menu, cardContainer, turnCounter);
+	homeScreen.remove();
+	menu.appendChild(menuHeading);
+	inGameScreen.append(menu, cardContainer, turnCounter);
+	memoryGame.append(inGameScreen);
 
 	cards.forEach((crd) => {
 		const card = document.createElement("div");
@@ -220,28 +362,22 @@ const newGame = (difficulty) => {
 		card.classList.add("card");
 		cardFace.classList.add("card__face");
 		cardBack.classList.add("card__back");
-		// card.classList.add("flipped");
 
 		card.dataset.id = crd.id;
-
 		cardFace.src = crd.faceImage;
 		cardBack.src = "../illustrations/card-decks/patchwork-animals/card-back.png"; //prettier-ignore
-		card.append(cardFace, cardBack);
 
+		card.append(cardFace, cardBack);
 		cardContainer.appendChild(card);
 
 		// functionality
-
 		card.addEventListener("click", () => {
-			// card.addEventListener(
-			// 	"animationend",
-			// 	function () {
-			// 		card.animationName = "";
-			// 	},
-			// 	false
-			// );
+			// cardFlipAudio.play();
+			card.style.animation = "none";
+			card.offsetHeight;
+			card.style.animation = "flipCard 1 1s forwards normal";
 			card.classList.toggle("card--flipped");
-			// card.classList.add("card--flip-card");
+
 			userCardSelection.push(card);
 			if (userCardSelection.length === 2) {
 				turnCount++;
@@ -262,8 +398,11 @@ const newGame = (difficulty) => {
 					if (!cardsMatch) {
 						userCardSelection.forEach((card) => {
 							card.classList.toggle("card--flipped");
+							card.style.animation = "none";
+							card.offsetHeight;
+							card.style.animation = "flipCard 1 1s forwards reverse";
+							clickCount++;
 						});
-
 						cards.forEach((card) =>
 							card.classList.toggle("card--click-event-disabled")
 						);
@@ -271,59 +410,61 @@ const newGame = (difficulty) => {
 					}
 				}, "1500");
 				if (userCardMatches.length === cards.length) {
-					console.log("You have won the game");
-					//renderHomeScreen
-					//renderCongratulationsWindow
-					// yes/no close congrats window
-					// yes - renderDifficultyOptions
-					// NO - renderHomeScreenButtons
+					inGameScreen.remove();
+					renderHomeScreen(memoryGame);
+					const homeScreen = document.querySelector(".memory-game__home-screen"); //prettier-ignore
+					removeHomeScreenOptions(homeScreen);
+					positionBanner();
+					renderEndOfGameWindow(homeScreen);
 				}
 			}
 		});
 	});
 
-	heading.addEventListener("click", () => {
-		renderMenuOptions(menu);
+	menuHeading.addEventListener("click", () => {
+		pauseGame();
+		renderMenuOptions(menu, inGameScreen);
+		menuHeading.classList.toggle("memory-game__menu-heading--menu-open");
 	});
 };
 
 const positionBanner = () => {
 	const banner = document.querySelector(".memory-game__banner");
-	banner.classList.toggle("memory-game__banner--top");
+	banner.classList.toggle("memory-game__banner--position-top");
 };
 
 const closeWindow = () => {
-	const homeScreen = document.querySelector("main");
+	const homeScreen = document.querySelector(".memory-game__home-screen");
 	const window = document.querySelector(".window");
 	window.remove();
-	renderHomeScreenButtons(homeScreen);
+	//renderHomeScreenOptions needs to be in a condition
+	// that does not render them when closing endOfGameWindow
+	renderHomeScreenOptions(homeScreen);
 	positionBanner();
 };
 
-const removeHomeScreenButtons = () => {
-	const buttons = document.querySelectorAll(".memory-game__btn");
-	buttons.forEach((btn) => {
-		btn.remove();
-	});
+const removeHomeScreenOptions = () => {
+	const homeScreenOptions = document.querySelector(".memory-game__home-screen-options-container"); //prettier-ignore
+	homeScreenOptions.remove();
 };
 
-const renderDifficultyMenu = (htmlMainElement) => {
-	const menuWindow = document.createElement("div");
+const renderDifficultyOptions = (homeScreen) => {
+	const difficultyOptionsWindow = document.createElement("div");
 	const closeWindowButton = document.createElement("button");
 	const heading = document.createElement("h2");
-	const menu = document.createElement("ol");
+	const difficultyOptionsList = document.createElement("ol");
 	const easy = document.createElement("li");
 	const medium = document.createElement("li");
 	const hard = document.createElement("li");
 	const difficultyOptions = [easy, medium, hard];
 
-	menuWindow.classList.add("memory-game__difficulty-menu-window", "window");
+	difficultyOptionsWindow.classList.add("memory-game__difficulty-options-window", "window"); //prettier-ignore
 	closeWindowButton.classList.add("memory-game__close-btn");
 	heading.classList.add("memory-game__heading");
-	menu.classList.add("memory-game__difficulty-menu");
-	easy.classList.add("memory-game__difficulty-menu-option");
-	medium.classList.add("memory-game__difficulty-menu-option");
-	hard.classList.add("memory-game__difficulty-menu-option");
+	difficultyOptionsList.classList.add("memory-game__difficulty-options-list");
+	easy.classList.add("memory-game__difficulty-option");
+	medium.classList.add("memory-game__difficulty-option");
+	hard.classList.add("memory-game__difficulty-option");
 
 	closeWindowButton.innerHTML = "x";
 	heading.innerHTML = "Select Difficulty";
@@ -331,25 +472,30 @@ const renderDifficultyMenu = (htmlMainElement) => {
 	medium.innerHTML = "Medium";
 	hard.innerHTML = "Hard";
 
-	menu.append(easy, medium, hard);
-	menuWindow.append(closeWindowButton, heading, menu);
+	difficultyOptionsList.append(easy, medium, hard);
+	difficultyOptionsWindow.append(
+		closeWindowButton,
+		heading,
+		difficultyOptionsList
+	);
 
-	htmlMainElement.appendChild(menuWindow);
+	homeScreen.appendChild(difficultyOptionsWindow);
 
 	//functionality:
 	closeWindowButton.addEventListener("click", closeWindow);
-	difficultyOptions.forEach((Option) => {
-		Option.addEventListener("click", (e) => {
-			newGame(e.target.innerHTML);
+
+	difficultyOptions.forEach((option) => {
+		option.addEventListener("click", (e) => {
+			newGame(e.target.innerHTML, homeScreen);
 		});
 	});
 };
 
-const renderHowToPlayWindow = (htmlMainElement) => {
+const renderHowToPlayWindow = (homeScreen) => {
 	const howToPlayWindow = document.createElement("div");
 	const closeWindowButton = document.createElement("button");
 	const heading = document.createElement("h2");
-	const description = document.createElement("p");
+	const howToPlayDescription = document.createElement("p");
 	const paragraph1 = "The goal of the game is to match cards with the same images. You may only turn over two cards at a time. If you correctly match a pair of cards, you receive a point and the cards remain face up. If you turn over an unlatching pair, they will be turned face down again and you may try again. Match all card pairs to win the game."; //prettier-ignore
 	const paragraph2 = "The difficulty determines how many pairs of cards need to be matched in order to win the game. Easy (4), Medium (8), Hard (16)"; //prettier-ignore
 	const lineBreak = document.createElement("span");
@@ -357,58 +503,57 @@ const renderHowToPlayWindow = (htmlMainElement) => {
 	howToPlayWindow.classList.add("memory-game__how-to-play-window", "window");
 	closeWindowButton.classList.add("memory-game__close-btn");
 	heading.classList.add("memory-game__heading");
-	description.classList.add("memory-game__description");
-	lineBreak.classList.add("memory-game__description-line-break");
+	howToPlayDescription.classList.add("memory-game__how-to-play-description");
+	lineBreak.classList.add("line-break");
 
 	closeWindowButton.innerHTML = "x";
 	heading.innerHTML = "How to Play";
 
-	description.append(paragraph1, lineBreak, paragraph2);
-	howToPlayWindow.append(closeWindowButton, heading, description);
-	htmlMainElement.appendChild(howToPlayWindow);
+	howToPlayDescription.append(paragraph1, lineBreak, paragraph2);
+	howToPlayWindow.append(closeWindowButton, heading, howToPlayDescription);
+	homeScreen.appendChild(howToPlayWindow);
 
 	//functionality:
 	closeWindowButton.addEventListener("click", closeWindow);
 };
 
-const renderHomeScreenButtons = (homeScreen) => {
-	const buttonContainer = document.createElement("div");
-	const playGameButton = document.createElement("button");
-	const howToPlayButton = document.createElement("button");
+const renderHomeScreenOptions = (homeScreen) => {
+	const homeScreenOptionsContainer = document.createElement("div");
+	const playGameOption = document.createElement("button");
+	const howToPlayOption = document.createElement("button");
 
-	buttonContainer.classList.add("memory-game__btn-container");
-	playGameButton.classList.add("memory-game__btn");
-	howToPlayButton.classList.add("memory-game__btn");
+	homeScreenOptionsContainer.classList.add(
+		"memory-game__home-screen-options-container"
+	);
+	playGameOption.classList.add("memory-game__home-screen-option");
+	howToPlayOption.classList.add("memory-game__home-screen-option");
 
-	playGameButton.innerHTML = "Play game";
-	howToPlayButton.innerHTML = "HOw to play...";
+	playGameOption.innerHTML = "Play game";
+	howToPlayOption.innerHTML = "HOw to play...";
 
-	buttonContainer.append(playGameButton, howToPlayButton);
-	homeScreen.append(buttonContainer);
+	homeScreenOptionsContainer.append(playGameOption, howToPlayOption);
+	homeScreen.append(homeScreenOptionsContainer);
 
 	//functionality:
-	playGameButton.addEventListener("click", () => {
-		const homeScreen = document.querySelector("main");
-		renderDifficultyMenu(homeScreen);
-		removeHomeScreenButtons();
+	playGameOption.addEventListener("click", () => {
+		renderDifficultyOptions(homeScreen);
+		removeHomeScreenOptions();
 		positionBanner();
 	});
-	howToPlayButton.addEventListener("click", () => {
-		const homeScreen = document.querySelector("main");
+	howToPlayOption.addEventListener("click", () => {
 		renderHowToPlayWindow(homeScreen);
-		removeHomeScreenButtons();
+		removeHomeScreenOptions();
 		positionBanner();
 	});
 };
 
-const renderMemoryGame = () => {
-	//considering a div with a class of homeScreen to house all of these elements
-	const memoryGame = document.createElement("main");
+const renderHomeScreen = (memoryGame) => {
+	const homeScreen = document.createElement("div");
 	const banner = document.createElement("div");
 	const title = document.createElement("h1");
 	const subtitle = document.createElement("p");
 
-	memoryGame.classList.add("memory-game");
+	homeScreen.classList.add("memory-game__home-screen");
 	banner.classList.add("memory-game__banner");
 	title.classList.add("memory-game__title");
 	subtitle.classList.add("memory-game__subtitle");
@@ -416,10 +561,20 @@ const renderMemoryGame = () => {
 	title.innerHTML = "MemorY";
 	subtitle.innerHTML = "A gAme for your whOle Brain";
 
-	banner.append(title, subtitle);
-	memoryGame.append(banner);
+	//renderHomeScreenOptions needs to be in a condition
+	// that does not call when rendering home screen at end of game
+	renderHomeScreenOptions(homeScreen);
 
-	renderHomeScreenButtons(memoryGame);
+	banner.append(title, subtitle);
+	homeScreen.append(banner);
+	memoryGame.append(homeScreen);
+};
+
+const renderMemoryGame = () => {
+	const memoryGame = document.createElement("main");
+	memoryGame.classList.add("memory-game");
+
+	renderHomeScreen(memoryGame);
 
 	documentBody.appendChild(memoryGame);
 };
