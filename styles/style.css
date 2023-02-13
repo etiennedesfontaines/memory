@@ -56,8 +56,9 @@ html {
 .memory-game__banner {
   position: absolute;
   text-align: center;
-  -webkit-transform: translateY(-15vh);
-          transform: translateY(-15vh);
+  padding-top: 1.6rem;
+  -webkit-transform: translateY(-16vh);
+          transform: translateY(-16vh);
 }
 
 .memory-game__banner--position-top {
@@ -311,14 +312,13 @@ html {
 .card__face, .card__back {
   position: absolute;
   height: 100%;
-  width: 100%;
+  width: auto;
   pointer-events: none;
 }
 
 .card__back {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-  visibility: hidden;
 }
 
 @-webkit-keyframes flipCard {
@@ -356,6 +356,91 @@ html {
   100% {
     -webkit-transform: rotateY(180deg) scale(1);
             transform: rotateY(180deg) scale(1);
+  }
+}
+
+@media only screen and (orientation: portrait) {
+  body {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+  .memory-game {
+    width: 100vh;
+    height: 100vw;
+  }
+}
+
+@media screen and (max-width: 896px) {
+  .memory-game__title {
+    font-size: 7.2rem;
+  }
+  .memory-game__subtitle {
+    font-size: 1.6rem;
+  }
+  .memory-game__home-screen-options-container {
+    padding-top: 1.6rem;
+    gap: 3.2rem;
+  }
+  .memory-game__home-screen-option {
+    font-size: 1.6rem;
+  }
+  .memory-game__difficulty-options-window {
+    margin-top: 3.2rem;
+    width: 32rem;
+  }
+  .memory-game__difficulty-options-list {
+    gap: 0.8rem;
+  }
+  .memory-game__difficulty-option {
+    font-size: 1.6rem;
+  }
+  .memory-game__how-to-play-window {
+    width: 48rem;
+  }
+  .memory-game__how-to-play-window--game-menu {
+    width: revert;
+  }
+  .memory-game__heading {
+    font-size: 2.4rem;
+    padding-bottom: 1.6rem;
+  }
+  .memory-game__close-btn {
+    font-size: 1.6rem;
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+  .memory-game__how-to-play-description {
+    font-size: 1.2rem;
+  }
+  .memory-game__menu {
+    margin: 0.8rem;
+  }
+  .memory-game__menu-option {
+    font-size: 2.4rem;
+  }
+  .memory-game__menu-heading {
+    font-size: 4.8rem;
+    padding-bottom: revert;
+  }
+  .memory-game__card-container {
+    margin: 0.8rem 0rem 0.8rem 0rem;
+  }
+  .memory-game__card-container--game-paused {
+    -webkit-filter: blur(1.5px);
+            filter: blur(1.5px);
+  }
+  .memory-game__turn-counter {
+    font-size: 2.4rem;
+    padding: 0.8rem;
+  }
+  .memory-game__user-action-warning {
+    font-size: 2.4rem;
+  }
+  .memory-game__decision-option {
+    font-size: 2.8rem;
+  }
+  .memory-game__decision-option--confirm {
+    margin-right: 2.4rem;
   }
 }
 /*# sourceMappingURL=style.css.map */

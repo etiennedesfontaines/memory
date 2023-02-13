@@ -162,32 +162,28 @@ I have made this choice as a learning exercise rather than because it is what I 
 
 ## issue list:
 
-- Method for placing home page content?
+- When card selection isn't a match, user can select first card of the next pair beofre initial pair selection has animated back to front down. Delay using an event listener for the end of the animation.
 
-  - I think it may be best to offset absolute positioning, rather than using flex, making the animation of the heading to the top of the screen easy?
-
-  - Wrap heading and nav in a single container
-
-- card sizing: //setting height and width to 100% achieves unified colum and grid row gap, but I'd rather set one and the other to autoto maintain image aspect ratio...
+- card sizing: //setting height and width to 100% achieves unified colum and grid row gap, but I'd rather set only the height and the other to auto maintaining image aspect ratio... But this creates problems with card overlap on certain screen sizes.
 
 - card-container: I'm struggling to grid-template-columns responsively and have the cards behave (size) as intended. I'd like to always have four rows, but have the amount of colums be dictated by the number of cards, so it will add rows as and when there is no more space in the grid. This will allow that I set the grid on the card container and it adjusts depending on the amount of cards dealt, rather than having to change the grid setting deppending on difficulty selection.
 
 - menu window margin declaration isn't affecting top and bottom margin.
 
-- Clicking menuHeading multiple times creates multiple menu options, it should only create one.
-
-- Should clicking menu option a second time remove menu options or just do nothing? If nothing, remove cursor: pointer when menu is open.
-
-- closeMenu is not working.
+- Should clicking menu option a second time remove menu options or just do nothing?
 
 - Moves counter causes layout shift on update.
-
-- When selecting the Quit option from the ingame menu, confirming quit no longer works when you have denied it once.
 
 - cards are lagging when loading, exposing front face before game has begun - further image optimisation needed?
   The problem seems to worsen as more cards need to be loaded.
 
 - some functions run to create elements at times when they arent needed, then remove functions for those are automatically run to remove them. e.g end of Game and closeWindow. Better to only run homeScreenOptions func when it is needed - using a conditional to control this will likely work.
+
+- Refactor all code and seperate both styling and js into different documents depending on its function.
+
+- CSS components for values used multiple times
+
+- CSS mixins for methods used multiple times.
 
 //Below is the implementation to change selectCardsForGame functionality to prevent the need to shuffle the cards twice.
 
