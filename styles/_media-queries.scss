@@ -1,0 +1,102 @@
+@media only screen and (orientation: portrait) {
+	body {
+		transform: rotate(90deg);
+	}
+	.memory-game {
+		width: 100vh;
+		height: 100vw;
+	}
+}
+
+//Do I need a tablet break point?
+
+//mobile
+@media screen and (max-width: 896px) {
+	.memory-game {
+		// &__banner {
+		// 	transform: translateY(-17vh);
+		// }
+
+		&__title {
+			font-size: 7.2rem;
+		}
+		&__subtitle {
+			font-size: 1.6rem;
+		}
+		&__home-screen-options-container {
+			padding-top: 1.6rem;
+			gap: 3.2rem;
+		}
+		&__home-screen-option {
+			font-size: 1.6rem;
+		}
+		&__difficulty-options-window {
+			margin-top: 3.2rem;
+			width: 32rem;
+		}
+		&__difficulty-options-list {
+			gap: 0.8rem;
+		}
+		&__difficulty-option {
+			font-size: 1.6rem;
+		}
+		&__how-to-play-window {
+			//copy line length is too long, but I'm out of wall space
+			// I think the bg image for mobile may be the issue
+			width: 48rem;
+			&--game-menu {
+				width: revert;
+			}
+		}
+
+		&__heading {
+			font-size: 2.4rem;
+			padding-bottom: 1.6rem;
+
+			// &--game-menu {
+			// 	font-size: 2rem;
+			// }
+		}
+		&__close-btn {
+			font-size: 1.6rem;
+			width: 1.6rem;
+			height: 1.6rem;
+		}
+
+		&__how-to-play-description {
+			font-size: 1.2rem;
+		}
+		&__menu {
+			margin: 0.8rem;
+		}
+		&__menu-option {
+			font-size: 2.4rem;
+		}
+		&__menu-heading {
+			font-size: 4.8rem;
+			padding-bottom: revert;
+		}
+
+		&__card-container {
+			margin: 0.8rem 0rem 0.8rem 0rem;
+			&--game-paused {
+				filter: blur(1.5px);
+			}
+		}
+
+		&__turn-counter {
+			font-size: 2.4rem;
+			padding: 0.8rem;
+		}
+		&__user-action-warning {
+			font-size: 2.4rem;
+		}
+		&__decision-option {
+			font-size: 2.8rem;
+
+			&--confirm {
+				margin-right: 2.4rem;
+			}
+		}
+	}
+}

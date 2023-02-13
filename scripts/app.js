@@ -2,7 +2,7 @@ let turnCount = 0;
 let userCardSelection = [];
 let userCardMatches = [];
 
-const documentBody = document.querySelector("body");
+const documentBody = document.body;
 // const cardFlipAudio = new Audio("../sounds/card-flip-02.wav");
 const getCards = () => [
 	{
@@ -401,7 +401,6 @@ const newGame = (difficulty, homeScreen) => {
 							card.style.animation = "none";
 							card.offsetHeight;
 							card.style.animation = "flipCard 1 1s forwards reverse";
-							clickCount++;
 						});
 						cards.forEach((card) =>
 							card.classList.toggle("card--click-event-disabled")
