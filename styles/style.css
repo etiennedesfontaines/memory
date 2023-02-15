@@ -3,8 +3,7 @@
 *::after {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
@@ -24,148 +23,104 @@ html {
   background-size: cover;
   background-position: bottom;
 }
-
 .memory-game__home-screen {
   position: relative;
   height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
 .memory-game__in-game-screen {
   height: 100%;
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 3fr 1fr;
-      grid-template-columns: 1fr 3fr 1fr;
-  -ms-grid-rows: 6fr 1fr;
-      grid-template-rows: 6fr 1fr;
+  grid-template-columns: 1fr 3.10638298fr 1fr;
+  grid-template-rows: 6fr 1fr;
 }
-
 .memory-game__banner {
   position: absolute;
   text-align: center;
   padding-top: 1.6rem;
-  -webkit-transform: translateY(-16vh);
-          transform: translateY(-16vh);
+  transform: translateY(-16vh);
 }
-
 .memory-game__banner--position-top {
-  -webkit-transform: translateY(-38vh);
-          transform: translateY(-38vh);
+  transform: translateY(-38vh);
 }
-
 .memory-game__banner--position-top > .memory-game__title,
 .memory-game__banner--position-top .memory-game__subtitle {
-  -webkit-transform: scale(0.9);
-          transform: scale(0.9);
+  transform: scale(0.9);
 }
-
 .memory-game__title {
   font-size: 15.6rem;
+  letter-spacing: 0.8rem;
   font-weight: 100;
-  line-height: 90%;
+  line-height: 95%;
 }
-
 .memory-game__subtitle {
   font-size: 3.2rem;
+  letter-spacing: 0.15rem;
 }
-
 .memory-game__home-screen-options-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  gap: 10.12rem;
-  -webkit-transform: translateY(5vh);
-          transform: translateY(5vh);
+  gap: 9.6rem;
+  transform: translateY(5vh);
 }
-
 .memory-game__home-screen-option {
   font-family: "Give You Glory", cursive;
   font-size: 3.2rem;
+  letter-spacing: 0.1rem;
   background: none;
   border: none;
   cursor: pointer;
 }
-
 .memory-game__difficulty-options-window {
   position: relative;
   width: 56rem;
 }
-
 .memory-game__difficulty-options-list {
   list-style: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   gap: 1.6rem;
 }
-
 .memory-game__difficulty-option {
   font-family: "Give You Glory", cursive;
   font-size: 3.2rem;
+  letter-spacing: 0.15rem;
   cursor: pointer;
 }
-
 .memory-game__how-to-play-window {
   position: relative;
   width: 82.4rem;
-  -webkit-transform: translateY(6vh);
-          transform: translateY(6vh);
+  transform: translateY(6vh);
 }
-
 .memory-game__how-to-play-window--game-menu {
   width: revert;
-  -webkit-transform: revert;
-          transform: revert;
+  transform: revert;
 }
-
 .memory-game__how-to-play-description {
   font-size: 2.4rem;
+  letter-spacing: 0.12rem;
+  line-height: 1.6;
 }
-
 .memory-game__heading {
   text-align: center;
   font-family: "Give You Glory", cursive;
   font-size: 4.8rem;
+  letter-spacing: 0.15rem;
   padding-bottom: 2.4rem;
 }
-
 .memory-game__heading--game-menu {
   text-align: left;
 }
-
 .memory-game__close-btn {
   position: absolute;
   top: 0;
   right: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   height: 3.2rem;
   width: 3.2rem;
   padding-top: 0.3rem;
@@ -176,88 +131,37 @@ html {
   font-size: 3.2rem;
   cursor: pointer;
 }
-
 .memory-game__close-btn--game-menu {
   top: 1.6rem;
 }
-
 .memory-game__menu {
   position: relative;
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 1;
-  grid-column: 1 / 2;
+  grid-column: 1/2;
   height: 100%;
-  margin: 1.6rem;
+  margin: 1.6rem 1.6rem 1.6rem 3rem;
 }
-
 .memory-game__menu-options {
   list-style: none;
 }
-
 .memory-game__menu-option {
   font-size: 4.8rem;
   margin-bottom: 2.4rem;
   cursor: pointer;
 }
-
 .memory-game__menu-heading {
   font-size: 9.6rem;
   font-weight: 100;
   padding-bottom: 1.6rem;
   cursor: pointer;
 }
-
 .memory-game__menu-heading--menu-open {
   pointer-events: none;
 }
-
-.memory-game__card-container {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2 / 3;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 1;
-  grid-row: 1 /2;
-  place-self: stretch;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: (1fr)[4];
-      grid-template-rows: repeat(4, 1fr);
-  -ms-grid-columns: (1fr)[8];
-      grid-template-columns: repeat(8, 1fr);
-  gap: 1.6rem;
-  margin: 1.6rem 0rem 1.6rem 0rem;
-  -webkit-perspective: 1000px;
-          perspective: 1000px;
-}
-
-.memory-game__card-container--game-paused {
-  -webkit-filter: blur(3px);
-          filter: blur(3px);
-  pointer-events: none;
-}
-
-.memory-game__turn-counter {
-  font-size: 4.8rem;
-  -ms-grid-column-align: end;
-      justify-self: end;
-  -ms-flex-item-align: start;
-      -ms-grid-row-align: start;
-      align-self: start;
-  padding: 1.6rem;
-}
-
-.memory-game__turn-counter--game-paused {
-  -webkit-filter: blur(3px);
-          filter: blur(3px);
-}
-
 .memory-game__user-action-warning {
   font-size: 4.8rem;
   font-weight: 100;
   margin-bottom: 2.4rem;
 }
-
 .memory-game__decision-option {
   font-size: 5.6rem;
   font-weight: 100;
@@ -266,110 +170,100 @@ html {
   font-family: "Give You Glory", cursive;
   cursor: pointer;
 }
-
 .memory-game__decision-option--confirm {
   margin-right: 4.8rem;
 }
-
-.memory-game__end-of-game-window {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.memory-game__card-container {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: column;
+  gap: 1.6rem;
+  perspective: 1000px;
 }
-
+.memory-game__card-container--difficulty-easy {
+  padding: 3.2rem 29.6rem;
+}
+.memory-game__card-container--difficulty-medium {
+  padding: 3.2rem 14.8rem;
+}
+.memory-game__card-container--difficulty-hard {
+  padding: 3.2rem 0rem;
+}
+.memory-game__card-container--game-paused {
+  filter: blur(3px);
+  pointer-events: none;
+}
+.memory-game__turn-counter {
+  grid-column: 3/4;
+  font-size: 4.8rem;
+  justify-self: end;
+  align-self: start;
+  padding: 1.6rem 3rem 1.6rem 1.6rem;
+}
+.memory-game__turn-counter--game-paused {
+  filter: blur(3px);
+}
+.memory-game__end-of-game-window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .memory-game__result {
   font-size: 3.2rem;
 }
 
 .card {
   position: relative;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  -webkit-transition: -webkit-transform 1s;
-  transition: -webkit-transform 1s;
+  width: 13.2rem;
+  height: 18.5rem;
+  transform-style: preserve-3d;
   transition: transform 1s;
-  transition: transform 1s, -webkit-transform 1s;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
-          box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px;
   cursor: pointer;
 }
-
 .card--flipped {
   pointer-events: none;
 }
-
 .card--click-event-disabled {
   pointer-events: none;
 }
-
 .card__face, .card__back {
   position: absolute;
-  height: 100%;
-  width: auto;
+  width: 13.2rem;
+  height: 18.5rem;
   pointer-events: none;
 }
-
 .card__back {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
 
-@-webkit-keyframes flipCard {
-  0% {
-    -webkit-transform: rotateY(0deg) scale(1);
-            transform: rotateY(0deg) scale(1);
-  }
-  25% {
-    -webkit-transform: rotateY(0deg) scale(1.2);
-            transform: rotateY(0deg) scale(1.2);
-  }
-  50% {
-    -webkit-transform: rotateY(180deg) scale(1.2);
-            transform: rotateY(180deg) scale(1.2);
-  }
-  100% {
-    -webkit-transform: rotateY(180deg) scale(1);
-            transform: rotateY(180deg) scale(1);
-  }
-}
-
 @keyframes flipCard {
   0% {
-    -webkit-transform: rotateY(0deg) scale(1);
-            transform: rotateY(0deg) scale(1);
+    transform: rotateY(0deg) scale(1);
   }
   25% {
-    -webkit-transform: rotateY(0deg) scale(1.2);
-            transform: rotateY(0deg) scale(1.2);
+    transform: rotateY(0deg) scale(1.1);
   }
   50% {
-    -webkit-transform: rotateY(180deg) scale(1.2);
-            transform: rotateY(180deg) scale(1.2);
+    transform: rotateY(180deg) scale(1.1);
   }
   100% {
-    -webkit-transform: rotateY(180deg) scale(1);
-            transform: rotateY(180deg) scale(1);
+    transform: rotateY(180deg) scale(1);
   }
 }
-
 @media only screen and (orientation: portrait) {
   body {
-    -webkit-transform: rotate(90deg);
-            transform: rotate(90deg);
+    transform: rotate(90deg);
   }
   .memory-game {
     width: 100vh;
     height: 100vw;
   }
 }
-
 @media screen and (max-width: 896px) {
   .memory-game__title {
     font-size: 7.2rem;
@@ -426,8 +320,7 @@ html {
     margin: 0.8rem 0rem 0.8rem 0rem;
   }
   .memory-game__card-container--game-paused {
-    -webkit-filter: blur(1.5px);
-            filter: blur(1.5px);
+    filter: blur(1.5px);
   }
   .memory-game__turn-counter {
     font-size: 2.4rem;
@@ -442,5 +335,4 @@ html {
   .memory-game__decision-option--confirm {
     margin-right: 2.4rem;
   }
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

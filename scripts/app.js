@@ -110,7 +110,6 @@ const renderEndOfGameWindow = (homeScreen) => {
 	const endOfGameWindow = document.createElement("div");
 	const heading = document.createElement("h2");
 	const result = document.createElement("p");
-	//playAgainHeading ?
 	const optionsHeading = document.createElement("h3");
 	const playAgainOptionsContainer = document.createElement("div");
 	const confirmOption = document.createElement("btn");
@@ -346,11 +345,23 @@ const newGame = (difficulty, homeScreen) => {
 	cardContainer.classList.add("memory-game__card-container");
 	turnCounter.classList.add("memory-game__turn-counter");
 
+	if (difficulty === "Easy") {
+		cardContainer.classList.add("memory-game__card-container--difficulty-easy");
+		// cardContainer.classList.add("memory-game__in-game-screen--difficulty-easy");
+	} else if (difficulty === "Medium") {
+		cardContainer.classList.add("memory-game__card-container--difficulty-medium"); //prettier-ignore
+		// cardContainer.classList.add("memory-game__in-game-screen--difficulty-medium"); //prettier-ignore
+	} else if (difficulty === "Hard") {
+		cardContainer.classList.add("memory-game__card-container--difficulty-hard");
+		// cardContainer.classList.add("memory-game__in-game-screen--difficulty-hard");
+	}
+
 	menuHeading.innerHTML = "Menu";
 	turnCounter.innerHTML = `Moves: ${turnCount}`;
 
 	homeScreen.remove();
 	menu.appendChild(menuHeading);
+
 	inGameScreen.append(menu, cardContainer, turnCounter);
 	memoryGame.append(inGameScreen);
 
@@ -396,15 +407,19 @@ const newGame = (difficulty, homeScreen) => {
 				}
 				setTimeout(() => {
 					if (!cardsMatch) {
+						const reEnableClickEvent = (e) => {
+							cards.forEach((card) => {
+								card.classList.remove("card--click-event-disabled");
+							});
+							e.target.removeEventListener("animationend", reEnableClickEvent);
+						};
 						userCardSelection.forEach((card) => {
 							card.classList.toggle("card--flipped");
 							card.style.animation = "none";
 							card.offsetHeight;
 							card.style.animation = "flipCard 1 1s forwards reverse";
+							card.addEventListener("animationend", reEnableClickEvent);
 						});
-						cards.forEach((card) =>
-							card.classList.toggle("card--click-event-disabled")
-						);
 						userCardSelection = [];
 					}
 				}, "1500");
@@ -581,3 +596,6 @@ const renderMemoryGame = () => {
 window.onload = () => {
 	renderMemoryGame();
 };
+
+console.log("windowHeight", window.innerHeight);
+console.log("windowWidth", window.innerWidth);
