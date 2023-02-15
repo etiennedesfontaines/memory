@@ -4,14 +4,13 @@
 
 - Why should Id's not be 0 indexed?
 - Shuffle function (sort with Math.random)
-- Do I need to keep my h1?
+
+- I've noticed my desgins to date have not accounted for the 80px of screen space taken up by the browser search and tab bar - I've never heard about needing to do this but it definitely affects the build....?
 
 - Is it semantically correct to have the how to play menu heading as an h3?
   It is a subCategory of the Menu but its content is not related to the menu...
 
 - I've used the difficulty inner HTML to as the value to check in the conditional that selects cards to deal. Is it better practice to create a dataset for this purpose and reference that instead?
-
-- array.slice is behaving in a way that seems odd to me selectCardsfunction.
 
 ## Minimum Viable Product (MVP) / Brief:
 
@@ -162,28 +161,36 @@ I have made this choice as a learning exercise rather than because it is what I 
 
 ## issue list:
 
-- When card selection isn't a match, user can select first card of the next pair beofre initial pair selection has animated back to front down. Delay using an event listener for the end of the animation.
-
-- card sizing: //setting height and width to 100% achieves unified colum and grid row gap, but I'd rather set only the height and the other to auto maintaining image aspect ratio... But this creates problems with card overlap on certain screen sizes.
-
-- card-container: I'm struggling to grid-template-columns responsively and have the cards behave (size) as intended. I'd like to always have four rows, but have the amount of colums be dictated by the number of cards, so it will add rows as and when there is no more space in the grid. This will allow that I set the grid on the card container and it adjusts depending on the amount of cards dealt, rather than having to change the grid setting deppending on difficulty selection.
-
-- menu window margin declaration isn't affecting top and bottom margin.
-
 - Should clicking menu option a second time remove menu options or just do nothing?
 
 - Moves counter causes layout shift on update.
+  solutions tried:
+
+1. creating a pseudo element ::after, giving it content of 000, positioning it absolute and right 0. But the layout shift still occurs.
+2. Setting justify-self to start and adding a padding of 16rem to the left side of the element. It works but it does not allow for it to have a right side distance of 1.6rem from the page border, as it was designed to be, and as the menu on the opposite side of the screen is.
+3. I've tried using a parent container but cannot seem to resolve the issue even then...
 
 - cards are lagging when loading, exposing front face before game has begun - further image optimisation needed?
   The problem seems to worsen as more cards need to be loaded.
+  I Have optimised the images and it makes no difference, so it is not a result of image sizing.
 
 - some functions run to create elements at times when they arent needed, then remove functions for those are automatically run to remove them. e.g end of Game and closeWindow. Better to only run homeScreenOptions func when it is needed - using a conditional to control this will likely work.
+
+- Add a credits section to the game menu
+
+- scale and optimise images for all devices.
+
+- change the image source and size relative to device.
+
+- sizing of cards and --in-game-screen column and row declarations will likely need to be adjusted for each device.
 
 - Refactor all code and seperate both styling and js into different documents depending on its function.
 
 - CSS components for values used multiple times
 
 - CSS mixins for methods used multiple times.
+
+## Refactor code
 
 //Below is the implementation to change selectCardsForGame functionality to prevent the need to shuffle the cards twice.
 
@@ -205,3 +212,44 @@ I have made this choice as a learning exercise rather than because it is what I 
 // }
 // });
 // };
+
+## Lessons:
+
+- I recognize I should have designed for mobile first. It would serve to accomplish the same thing using less break points.
+
+Mobile: 360 x 640
+Mobile: 375 x 667
+Mobile: 360 x 720
+iPhone X: 375 x 812
+Pixel 2: 411 x 731
+Tablet: 768 x 1024
+Laptop: 1366 x 768
+High-res laptop or desktop: 1920 x 1080
+
+- Using the srcset attribute for images allows for different devices to access different sized images.
+  ie. mobile users will not have to download the full sized image, making for faster, more user friendly sights.
+
+<!-- <img srcset="large-img.jpg 1024w,
+middle-img.jpg 640w,
+small-img.jpg  320w"
+src="small.jpg"
+/> -->
+
+## Refactor Notes:
+
+### CSS
+
+- Why have I had to redeclare the font-family so many times, despite having it declared on the html?
+
+- btn: background: none, border: none, cursor: pointer.
+  Declare once, will allow alot of unecessary repetition to be removed.
+
+- why do the two options windows on the home screen render at different heights? Have fixed this with translateY(6vh) on how-to-play-window
+
+#### components for:
+
+color: #372602;
+
+font-sizes: 9.6rem, 5.6rem, 4.8rem, 3.2rem,
+
+spacing: 1.6rem
