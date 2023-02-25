@@ -12,6 +12,10 @@
 
 - I've used the difficulty inner HTML to as the value to check in the conditional that selects cards to deal. Is it better practice to create a dataset for this purpose and reference that instead?
 
+### Bash:
+
+- does it bother your eye that the home screen select difficulty and how to play windows are rendered at different heights?
+
 ## Minimum Viable Product (MVP) / Brief:
 
 Design and build a digital version of the card game "memory".
@@ -176,13 +180,23 @@ I have made this choice as a learning exercise rather than because it is what I 
 
 - some functions run to create elements at times when they arent needed, then remove functions for those are automatically run to remove them. e.g end of Game and closeWindow. Better to only run homeScreenOptions func when it is needed - using a conditional to control this will likely work.
 
+- Check all spelling and rewrite how to play copy
+
 - Add a credits section to the game menu
 
 - scale and optimise images for all devices.
 
+- Bash: I'd like the animals aligned within their cards please.
+
+- Braj: Illustrated border?
+
 - change the image source and size relative to device.
 
 - sizing of cards and --in-game-screen column and row declarations will likely need to be adjusted for each device.
+
+- end of game screen arrives instantly, would prefer it to occur after annimation has completed.
+
+- end of game screen neeeds to be redesigned.
 
 - Refactor all code and seperate both styling and js into different documents depending on its function.
 
@@ -228,6 +242,23 @@ High-res laptop or desktop: 1920 x 1080
 
 - Using the srcset attribute for images allows for different devices to access different sized images.
   ie. mobile users will not have to download the full sized image, making for faster, more user friendly sights.
+
+  - optimising image dimension and size by device and declaring image size in css - Possitively affects page load speed, user exp and seo by way of cumulative layout shift score being low.
+
+  - Considering browser tab and search bar in design process.
+    They generally reduce the window height by around 80px.
+
+- Apparently: I encourage you not to approach media queries like this.
+
+  Firstly, its really well established that a mobile-first approach is better for users, better for performance, better for developers. So consider switching that.
+  Second, only add media queries when you need to. Some designs or CSS approaches may not need them at all.
+  As you enlarge your screen (or in your case shrink it if working desktop first), where does the design start to ‘break’? That is where a media query is needed.
+
+In a real world project you will set some sensible default breakpoints at a global level rather than deciding new ones for every page/component design you’re asked to build.
+But these will often differ project-to-project.
+
+- Always design and build mobile first.
+  With just your html markup, you will have a responsive layout until you add styles that cause it to no longer be responsive. So rather than starting desktop and then writing media queries to remove already written styles that don't allow for fluid responsiveness, build mobile first and add complexty as needed
 
 <!-- <img srcset="large-img.jpg 1024w,
 middle-img.jpg 640w,
