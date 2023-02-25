@@ -7,82 +7,98 @@ const documentBody = document.body;
 const getCards = () => [
 	{
 		cardName: "aardvark",
-		faceImage: "../illustrations/card-decks/patchwork-animals/aardvark.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/aardvark.png",
 		id: 1,
 	},
 	{
 		cardName: "badger",
-		faceImage: "../illustrations/card-decks/patchwork-animals/badger.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/badger.png",
 		id: 2,
 	},
 	{
 		cardName: "chiwawa",
-		faceImage: "../illustrations/card-decks/patchwork-animals/chiwawa.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/chiwawa.png",
 		id: 3,
 	},
 	{
 		cardName: "duck",
-		faceImage: "../illustrations/card-decks/patchwork-animals/duck.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/duck.png",
 		id: 4,
 	},
 	{
 		cardName: "fox",
-		faceImage: "../illustrations/card-decks/patchwork-animals/fox.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/fox.png",
 		id: 5,
 	},
 	{
 		cardName: "frog",
-		faceImage: "../illustrations/card-decks/patchwork-animals/frog.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/frog.png",
 		id: 6,
 	},
 	{
 		cardName: "highland cow",
-		faceImage: "../illustrations/card-decks/patchwork-animals/highland-cow.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/highland-cow.png",
 		id: 7,
 	},
 	{
 		cardName: "koala",
-		faceImage: "../illustrations/card-decks/patchwork-animals/koala.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/koala.png",
 		id: 8,
 	},
 	{
 		cardName: "lama",
-		faceImage: "../illustrations/card-decks/patchwork-animals/lama.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/lama.png",
 		id: 9,
 	},
 	{
 		cardName: "monster",
-		faceImage: "../illustrations/card-decks/patchwork-animals/monster.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/monster.png",
 		id: 10,
 	},
 	{
 		cardName: "panda",
-		faceImage: "../illustrations/card-decks/patchwork-animals/panda.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/panda.png",
 		id: 11,
 	},
 	{
 		cardName: "penguin",
-		faceImage: "../illustrations/card-decks/patchwork-animals/penguin.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/penguin.png",
 		id: 12,
 	},
 	{
 		cardName: "rabbit",
-		faceImage: "../illustrations/card-decks/patchwork-animals/rabbit.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/rabbit.png",
 		id: 13,
 	},
 	{
 		cardName: "reindeer",
-		faceImage: "../illustrations/card-decks/patchwork-animals/reindeer.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/reindeer.png",
 		id: 14,
 	},
 	{
 		cardName: "scotty",
-		faceImage: "../illustrations/card-decks/patchwork-animals/scotty.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/scotty.png",
 		id: 15,
 	},
 	{
 		cardName: "teddy",
-		faceImage: "../illustrations/card-decks/patchwork-animals/teddy.png",
+		faceImage:
+			"../images/small/illustrations/card-decks/patchwork-animals/teddy.png",
 		id: 16,
 	},
 ];
@@ -115,18 +131,24 @@ const renderEndOfGameWindow = (homeScreen) => {
 	const confirmOption = document.createElement("btn");
 	const declineOption = document.createElement("btn");
 
-	heading.innerHTML = "ConrRatulAtioNs!";
+	endOfGameWindow.classList.add("memory-game__end-of-game-window", "window");
+	heading.classList.add(
+		"memory-game__heading",
+		"memory-game__heading--end-of-game"
+	);
+	result.classList.add("memory-game__result");
+	optionsHeading.classList.add(
+		"memory-game__heading",
+		"memory-game__heading--end-of-game"
+	);
+	confirmOption.classList.add("memory-game__decision-option","memory-game__decision-option--confirm"); //prettier-ignore
+	declineOption.classList.add("memory-game__decision-option");
+
+	heading.innerHTML = "Congratulations!";
 	result.innerHTML = `You matched all pairs in ${turnCount} turns.`;
 	optionsHeading.innerHTML = "Would you like to Play again?";
 	confirmOption.innerHTML = "Yes!";
 	declineOption.innerHTML = "No!";
-
-	endOfGameWindow.classList.add("memory-game__end-of-game-window", "window");
-	heading.classList.add("memory-game__heading");
-	result.classList.add("memory-game__result");
-	optionsHeading.classList.add("memory-game__heading");
-	confirmOption.classList.add("memory-game__decision-option","memory-game__decision-option--confirm"); //prettier-ignore
-	declineOption.classList.add("memory-game__decision-option");
 
 	playAgainOptionsContainer.append(confirmOption, declineOption);
 	endOfGameWindow.append(
@@ -262,10 +284,13 @@ const renderMenuOptions = (menu, inGameScreen) => {
 
 		closeWindowButton.innerHTML = "x";
 		heading.innerHTML = "How To PlaY:";
-		howToPlayDescription.innerHTML = "The goal of the game is to match cards with the same images. You may only turn over two cards at a time. If you correctly match a pair of cards, you recieve a point and the cards remain face up. If you turn over an unmatching pair, they will be turned face down again and you may try again. Match all card pairs to win the game."; //prettier-ignore
+		howToPlayDescription.innerHTML = "The goal of the game is to match cards with the same images. You may turn over two cards at a time. If you match a pair of cards, you receive a point and the cards remain face up. If the cards do not match, they will be turned face down again and you may try again. Match all card pairs to win the game."; //prettier-ignore
 
 		howToPlayWindow.classList.add("memory-game__how-to-play-window","memory-game__how-to-play-window--game-menu"); //prettier-ignore
-		closeWindowButton.classList.add("memory-game__close-btn");
+		closeWindowButton.classList.add(
+			"memory-game__close-btn",
+			"memory-game__close-btn--how-to-play-game-menu"
+		);
 		heading.classList.add("memory-game__heading", "memory-game__heading--game-menu") //prettier-ignore
 		howToPlayDescription.classList.add("memory-game__how-to-play-description");
 
@@ -335,6 +360,7 @@ const newGame = (difficulty, homeScreen) => {
 	const inGameScreen = document.createElement("div");
 	const menu = document.createElement("div");
 	const menuHeading = document.createElement("h2");
+	const gameBoard = document.createElement("div");
 	const cardContainer = document.createElement("div");
 	const cards = shuffleCards(selectCardsForGame(shuffleCards(getCards()), difficulty)); //prettier-ignore
 	const turnCounter = document.createElement("p");
@@ -342,19 +368,20 @@ const newGame = (difficulty, homeScreen) => {
 	inGameScreen.classList.add("memory-game__in-game-screen");
 	menu.classList.add("memory-game__menu");
 	menuHeading.classList.add("memory-game__menu-heading");
+	gameBoard.classList.add("memory-game__board");
 	cardContainer.classList.add("memory-game__card-container");
 	turnCounter.classList.add("memory-game__turn-counter");
 
-	if (difficulty === "Easy") {
-		cardContainer.classList.add("memory-game__card-container--difficulty-easy");
-		// cardContainer.classList.add("memory-game__in-game-screen--difficulty-easy");
-	} else if (difficulty === "Medium") {
-		cardContainer.classList.add("memory-game__card-container--difficulty-medium"); //prettier-ignore
-		// cardContainer.classList.add("memory-game__in-game-screen--difficulty-medium"); //prettier-ignore
-	} else if (difficulty === "Hard") {
-		cardContainer.classList.add("memory-game__card-container--difficulty-hard");
-		// cardContainer.classList.add("memory-game__in-game-screen--difficulty-hard");
-	}
+	// if (difficulty === "Easy") {
+	// 	cardContainer.classList.add("memory-game__card-container--difficulty-easy");
+	// 	// cardContainer.classList.add("memory-game__in-game-screen--difficulty-easy");
+	// } else if (difficulty === "Medium") {
+	// 	cardContainer.classList.add("memory-game__card-container--difficulty-medium"); //prettier-ignore
+	// 	// cardContainer.classList.add("memory-game__in-game-screen--difficulty-medium"); //prettier-ignore
+	// } else if (difficulty === "Hard") {
+	// 	cardContainer.classList.add("memory-game__card-container--difficulty-hard");
+	// 	// cardContainer.classList.add("memory-game__in-game-screen--difficulty-hard");
+	// }
 
 	menuHeading.innerHTML = "Menu";
 	turnCounter.innerHTML = `Moves: ${turnCount}`;
@@ -362,7 +389,7 @@ const newGame = (difficulty, homeScreen) => {
 	homeScreen.remove();
 	menu.appendChild(menuHeading);
 
-	inGameScreen.append(menu, cardContainer, turnCounter);
+	inGameScreen.append(menu, gameBoard, turnCounter);
 	memoryGame.append(inGameScreen);
 
 	cards.forEach((crd) => {
@@ -376,10 +403,11 @@ const newGame = (difficulty, homeScreen) => {
 
 		card.dataset.id = crd.id;
 		cardFace.src = crd.faceImage;
-		cardBack.src = "../illustrations/card-decks/patchwork-animals/card-back.png"; //prettier-ignore
+		cardBack.src = "../images/small/illustrations/card-decks/patchwork-animals/card-back.png"; //prettier-ignore
 
 		card.append(cardFace, cardBack);
 		cardContainer.appendChild(card);
+		gameBoard.append(cardContainer);
 
 		// functionality
 		card.addEventListener("click", () => {
@@ -474,7 +502,10 @@ const renderDifficultyOptions = (homeScreen) => {
 
 	difficultyOptionsWindow.classList.add("memory-game__difficulty-options-window", "window"); //prettier-ignore
 	closeWindowButton.classList.add("memory-game__close-btn");
-	heading.classList.add("memory-game__heading");
+	heading.classList.add(
+		"memory-game__heading",
+		"memory-game__heading--home-screen"
+	);
 	difficultyOptionsList.classList.add("memory-game__difficulty-options-list");
 	easy.classList.add("memory-game__difficulty-option");
 	medium.classList.add("memory-game__difficulty-option");
@@ -510,13 +541,16 @@ const renderHowToPlayWindow = (homeScreen) => {
 	const closeWindowButton = document.createElement("button");
 	const heading = document.createElement("h2");
 	const howToPlayDescription = document.createElement("p");
-	const paragraph1 = "The goal of the game is to match cards with the same images. You may only turn over two cards at a time. If you correctly match a pair of cards, you receive a point and the cards remain face up. If you turn over an unlatching pair, they will be turned face down again and you may try again. Match all card pairs to win the game."; //prettier-ignore
-	const paragraph2 = "The difficulty determines how many pairs of cards need to be matched in order to win the game. Easy (4), Medium (8), Hard (16)"; //prettier-ignore
+	const paragraph1 = "The goal of the game is to match cards with the same images. You may turn over two cards at a time. If you match a pair of cards, you receive a point and the cards remain face up. If the cards do not match, they will be turned face down again and you may try again. Match all card pairs to win the game."; //prettier-ignore
+	const paragraph2 = "The difficulty determines how many pairs of cards are dealt. Easy (8), Medium (12), Hard (16)."; //prettier-ignore
 	const lineBreak = document.createElement("span");
 
 	howToPlayWindow.classList.add("memory-game__how-to-play-window", "window");
 	closeWindowButton.classList.add("memory-game__close-btn");
-	heading.classList.add("memory-game__heading");
+	heading.classList.add(
+		"memory-game__heading",
+		"memory-game__heading--home-screen"
+	);
 	howToPlayDescription.classList.add("memory-game__how-to-play-description");
 	lineBreak.classList.add("line-break");
 
@@ -596,6 +630,3 @@ const renderMemoryGame = () => {
 window.onload = () => {
 	renderMemoryGame();
 };
-
-console.log("windowHeight", window.innerHeight);
-console.log("windowWidth", window.innerWidth);
