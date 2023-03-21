@@ -1,0 +1,99 @@
+@media screen and (min-width: 934px),
+	(min-height: 934px) and (orientation: portrait) {
+	.memory-game {
+		background-image: url(../images/illustrations/background/medium/childs-room.png);
+	}
+}
+@media screen and (min-width: 1023px),
+	(min-height: 1023px) and (orientation: portrait) {
+	.memory-game {
+		&__title {
+			font-size: 12.4rem;
+		}
+		&__subtitle {
+			font-size: $font-m;
+		}
+		&__home-screen-options-container {
+			gap: 6.4rem;
+		}
+		&__home-screen-option {
+			font-size: $font-m;
+		}
+		&__heading {
+			font-size: $font-l;
+			margin-bottom: 1.8rem;
+			&--game-menu {
+				font-size: $font-m;
+			}
+		}
+
+		&__how-to-play-description {
+			font-size: $font-s;
+			max-width: 48rem;
+		}
+		&__difficulty-options-window {
+			padding: 0rem 8rem;
+		}
+		&__difficulty-option {
+			font-size: $font-m;
+			margin-bottom: 1.2rem;
+		}
+		&__close-btn {
+			font-size: $font-s;
+			width: 1.6rem;
+			height: 1.6rem;
+			&--how-to-play-game-menu {
+				font-size: $font-xs;
+				width: 1.2rem;
+				height: 1.2rem;
+			}
+		}
+		&__menu-heading {
+			font-size: $font-xxl;
+			margin-bottom: 1.6rem;
+		}
+		&__menu-option,
+		&__decision-option {
+			font-size: $font-m;
+		}
+		&__contributor__list {
+			font-size: 1.8rem;
+		}
+		&__contributor__list a {
+			font-size: $font-sm;
+		}
+
+		&__user-action-warning {
+			font-size: $font-m;
+			max-width: 18rem;
+			margin-bottom: 2.4rem;
+		}
+
+		&__turn-counter {
+			font-size: $font-l;
+			&--game-paused {
+				filter: blur(2.5px);
+			}
+		}
+		&__card-container--game-paused {
+			filter: blur(2.5px);
+		}
+		&__result {
+			font-size: $font-m;
+		}
+	}
+	.line-break {
+		margin-bottom: 1.6rem;
+	}
+	.card {
+		width: 7.4rem;
+		height: 10.36rem;
+	}
+}
+@media screen and (min-width: 1132px),
+	(min-height: 1132px) and (orientation: portrait) {
+	.card {
+		width: 9.4rem;
+		height: 13.16rem;
+	}
+}

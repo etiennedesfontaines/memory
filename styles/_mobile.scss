@@ -20,13 +20,14 @@ ol,
 ul {
 	list-style: none;
 }
-.line-break {
-	display: block;
-	margin-bottom: 0.8rem;
+a {
+	text-decoration: none;
+	color: #372602;
 }
+
 .memory-game {
 	height: 100vh;
-	background-image: url(../images/small/illustrations/background/childs-room.png);
+	background-image: url(../images/illustrations/background/small/childs-room.png);
 	background-size: cover;
 	background-position: bottom;
 
@@ -67,7 +68,7 @@ ul {
 		line-height: 93%;
 	}
 	&__subtitle {
-		font-size: 1.2rem;
+		font-size: $font-xs;
 		letter-spacing: 0.05rem;
 	}
 	&__home-screen-options-container {
@@ -76,7 +77,7 @@ ul {
 		padding-top: 8rem;
 	}
 	&__home-screen-option {
-		font-size: 1.2rem;
+		font-size: $font-xs;
 		letter-spacing: 0.05rem;
 	}
 	&__difficulty-options-window {
@@ -86,9 +87,10 @@ ul {
 		transform: translateY(4vh);
 	}
 	&__difficulty-option {
-		font-size: 1.2rem;
+		font-size: $font-xs;
 		margin-bottom: 0.4rem;
 		letter-spacing: 0.05rem;
+		cursor: pointer;
 	}
 	&__how-to-play-window {
 		position: relative;
@@ -105,11 +107,11 @@ ul {
 	}
 	&__heading {
 		text-align: center;
-		font-size: 1.6rem;
+		font-size: $font-s;
 		margin-bottom: 0.8rem;
 		letter-spacing: 0.08rem;
 		&--game-menu {
-			font-size: 1.2rem;
+			font-size: $font-xs;
 			text-align: left;
 		}
 		&--end-of-game {
@@ -124,7 +126,7 @@ ul {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-size: 1rem;
+		font-size: $font-xxs;
 		width: 1rem;
 		height: 1rem;
 		padding-top: 0.1rem;
@@ -145,33 +147,48 @@ ul {
 		position: relative;
 	}
 	&__menu-heading {
-		font-size: 2.4rem;
+		font-size: $font-m;
 		letter-spacing: 0.05rem;
+		cursor: pointer;
 		&--menu-open {
 			pointer-events: none;
 		}
 	}
 	&__menu-option {
-		font-size: 1.2rem;
+		font-size: $font-xs;
 		margin-bottom: 0.8rem;
 		letter-spacing: 0.05rem;
 		cursor: pointer;
 	}
 	&__user-action-warning {
-		font-size: 1.2rem;
+		font-size: $font-xs;
 		font-weight: 100;
 		margin-bottom: 0.8rem;
 		letter-spacing: 0.05rem;
 		max-width: 8rem;
 	}
 	&__decision-option {
-		font-size: 1.2rem;
+		font-size: $font-xs;
 		font-weight: 100;
 		cursor: pointer;
 		&--confirm {
 			margin-right: 1.6rem;
 		}
 	}
+	&__contributor__list {
+		display: flex;
+		flex-direction: column;
+		gap: 1.2rem;
+		font-size: 0.8rem;
+		letter-spacing: 0.03rem;
+	}
+	&__contributor__list a {
+		font-size: $font-xxs;
+		cursor: pointer;
+		text-decoration: underline;
+		// font-weight: 900;
+	}
+
 	&__board {
 		grid-column: 2 / 3;
 		grid-row: 1 /2;
@@ -195,7 +212,7 @@ ul {
 	&__turn-counter {
 		grid-column: 3 / 4;
 		justify-self: end;
-		font-size: 1.6rem;
+		font-size: $font-s;
 		letter-spacing: 0.05rem;
 		&--game-paused {
 			filter: blur(1.5px);
@@ -207,11 +224,14 @@ ul {
 		align-items: center;
 	}
 	&__result {
-		font-size: 1.2rem;
+		font-size: $font-xs;
 		margin-bottom: 1.6rem;
 	}
 }
-
+.line-break {
+	display: block;
+	margin-bottom: 0.8rem;
+}
 .card {
 	position: relative;
 	width: 4rem;
@@ -233,8 +253,8 @@ ul {
 		position: absolute;
 		width: 100%;
 		height: 100%;
-		// width: 4rem;
-		// height: 5.6rem;
+		width: 4rem;
+		height: 5.6rem;
 		pointer-events: none;
 	}
 	&__back {
@@ -275,7 +295,7 @@ ul {
 		}
 	}
 }
-//Mobile:
+
 @media screen and (min-width: 639px),
 	(min-height: 639px) and (orientation: portrait) {
 	.memory-game {
@@ -283,14 +303,14 @@ ul {
 			padding: 0.8rem;
 		}
 		&__how-to-play-description {
-			font-size: 1rem;
+			font-size: $font-xxs;
 			letter-spacing: 0.03rem;
 			max-width: 30rem;
 		}
 	}
 	.card {
 		width: 4.2rem;
-		height: 5.8rem;
+		height: 5.88rem;
 	}
 }
 
@@ -298,15 +318,21 @@ ul {
 	(min-height: 666px) and (orientation: portrait) {
 	.card {
 		width: 4.3rem;
-		height: 6rem;
+		height: 6.02rem;
 	}
 }
 
 @media screen and (min-width: 719px),
 	(min-height: 719px) and (orientation: portrait) {
 	.card {
-		width: 5.4rem;
-		height: 7.1rem;
+		width: 5rem;
+		height: 7rem;
+	}
+}
+@media screen and (width: 720px) and (height: 540px),
+	(height: 720px) and (width: 540px) {
+	.memory-game {
+		background-image: url(../images/illustrations/background/small/childs-room-exc.png);
 	}
 }
 @media screen and (min-width: 843px),
@@ -316,72 +342,78 @@ ul {
 			font-size: 8rem;
 		}
 		&__subtitle {
-			font-size: 1.6rem;
+			font-size: $font-s;
 		}
 		&__home-screen-options-container {
 			padding-top: 12rem;
 			gap: 4rem;
 		}
 		&__home-screen-option {
-			font-size: 1.6rem;
+			font-size: $font-s;
 		}
 		&__heading {
-			font-size: 2.4rem;
+			font-size: $font-m;
 			&--game-menu {
-				font-size: 1.6rem;
+				font-size: $font-s;
 			}
 		}
 		&__how-to-play-description {
-			font-size: 1.2rem;
+			font-size: $font-xs;
 			max-width: 36rem;
 		}
 		&__difficulty-option {
-			font-size: 1.6rem;
+			font-size: $font-s;
 			margin-bottom: 0.8rem;
 		}
 		&__close-btn {
-			font-size: 1.2rem;
+			font-size: $font-xs;
 			width: 1.2rem;
 			height: 1.2rem;
 
 			&--how-to-play-game-menu {
-				font-size: 1rem;
+				font-size: $font-xxs;
 				width: 1rem;
 				height: 1rem;
 			}
 		}
 		&__menu-heading {
-			font-size: 3.2rem;
+			font-size: $font-l;
 		}
 		&__menu-option {
-			font-size: 1.6rem;
+			font-size: $font-s;
+		}
+		&__contributor__list {
+			font-size: $font-xxs;
+		}
+		&__contributor__list a {
+			font-size: $font-xs;
 		}
 		&__user-action-warning {
-			font-size: 1.6rem;
+			font-size: $font-s;
 			max-width: 12rem;
 			margin-bottom: 1.6rem;
 		}
 		&__decision-option {
-			font-size: 1.6rem;
+			font-size: $font-s;
 			&--confirm {
 				margin-right: 2.4rem;
 			}
 		}
 		&__turn-counter {
-			font-size: 2.4rem;
+			font-size: $font-m;
 		}
 	}
 }
 @media screen and (min-width: 925px),
 	(min-height: 925px) and (orientation: portrait) {
 	.card {
-		width: 5.8rem;
-		height: 7.5rem;
+		width: 5.6rem;
+		height: 7.884rem;
 	}
 }
-// Edge cases mobile:
-@media screen and (max-height: 281px),
-	(max-width: 281px) and (orientation: portrait) {
+// Edge cases:
+@media screen and (max-height: 289px),
+	(max-width: 289px) and (orientation: portrait) {
 	.memory-game {
 		&__banner {
 			&--position-top {
@@ -405,7 +437,7 @@ ul {
 	}
 	.card {
 		width: 3.6rem;
-		height: 4.4rem;
+		height: 5.04rem;
 	}
 }
 @media screen and (max-width: 281px) and (orientation: portrait) {
@@ -429,237 +461,6 @@ ul {
 	(min-height: 739px) and (max-width: 376px) and (orientation: portrait) {
 	.card {
 		width: 4.6rem;
-		height: 6.2rem;
-	}
-}
-//Tablet:
-@media screen and (min-width: 1023px),
-	(min-height: 1023px) and (orientation: portrait) {
-	.memory-game {
-		&__title {
-			font-size: 12.4rem;
-		}
-		&__subtitle {
-			font-size: 2.4rem;
-		}
-		&__home-screen-options-container {
-			gap: 6.4rem;
-		}
-		&__home-screen-option {
-			font-size: 2.4rem;
-		}
-		&__heading {
-			font-size: 3.2rem;
-			margin-bottom: 1.8rem;
-			&--game-menu {
-				font-size: 2.4rem;
-			}
-		}
-
-		&__how-to-play-description {
-			font-size: 1.6rem;
-			max-width: 48rem;
-		}
-		&__difficulty-options-window {
-			padding: 0rem 8rem;
-		}
-		&__difficulty-option {
-			font-size: 2.4rem;
-			margin-bottom: 1.2rem;
-		}
-		&__close-btn {
-			font-size: 1.6rem;
-			width: 1.6rem;
-			height: 1.6rem;
-			&--how-to-play-game-menu {
-				font-size: 1.2rem;
-				width: 1.2rem;
-				height: 1.2rem;
-			}
-		}
-		&__menu-heading {
-			font-size: 4.8rem;
-			margin-bottom: 1.6rem;
-		}
-		&__menu-option,
-		&__decision-option {
-			font-size: 2.4rem;
-		}
-
-		&__user-action-warning {
-			font-size: 2.4rem;
-			max-width: 18rem;
-			margin-bottom: 2.4rem;
-		}
-
-		&__turn-counter {
-			font-size: 3.2rem;
-		}
-		&__result {
-			font-size: 2.4rem;
-		}
-	}
-	.line-break {
-		margin-bottom: 1.6rem;
-	}
-	.card {
-		width: 7.4rem;
-		height: 11.6rem;
-	}
-}
-@media screen and (min-width: 1132px),
-	(min-height: 1132px) and (orientation: portrait) {
-	.card {
-		width: 10rem;
-		height: 13.2rem;
-	}
-}
-
-//laptops and large tablets
-@media screen and (min-width: 1193px),
-	(min-height: 1193px) and (orientation: portrait) {
-	.memory-game {
-		&__how-to-play-description {
-			font-size: 2rem;
-			max-width: 62rem;
-		}
-		&__close-btn {
-			font-size: 2rem;
-			width: 2rem;
-			height: 2rem;
-
-			&--how-to-play-game-menu {
-				font-size: 1.6rem;
-				width: 1.6rem;
-				height: 1.6rem;
-			}
-		}
-	}
-	.card {
-		width: 9.6rem;
-		height: 13.12rem;
-	}
-}
-@media screen and (min-width: 1365px),
-	(min-height: 1365px) and (orientation: portrait) {
-	.memory-game {
-		&__in-game-screen {
-			padding: 1.6rem;
-		}
-		&__home-screen-options-container {
-			padding-top: 16rem;
-		}
-		&__heading {
-			font-size: 4rem;
-			margin-bottom: 2rem;
-			&--game-menu {
-				font-size: 3.2rem;
-			}
-		}
-		&__difficulty-option {
-			margin-bottom: 1.6rem;
-		}
-		&__menu-heading {
-			font-size: 7.2rem;
-		}
-		&__menu-option {
-			font-size: 3.2rem;
-			margin-bottom: 1.6rem;
-		}
-		&__user-action-warning {
-			font-size: 3.2rem;
-			max-width: 21rem;
-			margin-bottom: 2.8rem;
-		}
-		&__decision-option {
-			font-size: 3.2rem;
-			&--confirm {
-				margin-right: 4.8rem;
-			}
-		}
-		&__turn-counter {
-			font-size: 4rem;
-		}
-	}
-}
-@media screen and (min-width: 1727px),
-	(min-height: 1365px) and (orientation: portrait) {
-	.memory-game {
-		&__title {
-			font-size: 16.8rem;
-		}
-		&__subtitle {
-			font-size: 3.2rem;
-		}
-		&__home-screen-options-container {
-			padding-top: 20rem;
-			gap: 9.2rem;
-		}
-		&__home-screen-option {
-			font-size: 3.2rem;
-		}
-		&__heading {
-			font-size: 5.6rem;
-			font-weight: 100;
-			margin-bottom: 2.4rem;
-			&--game-menu {
-				font-size: 4rem;
-			}
-		}
-		&__how-to-play-description {
-			font-size: 2.4rem;
-			max-width: 72rem;
-		}
-		&__difficulty-option {
-			font-size: 3.2rem;
-			margin-bottom: 2rem;
-		}
-		&__close-btn {
-			font-size: 2.4rem;
-			width: 2.4rem;
-			height: 2.4rem;
-			&--how-to-play-game-menu {
-				font-size: 2rem;
-				width: 2rem;
-				height: 2rem;
-			}
-		}
-		&__menu-heading {
-			font-size: 9.6rem;
-		}
-		&__menu-option {
-			font-size: 4rem;
-			margin-bottom: 2.4rem;
-		}
-		&__user-action-warning {
-			font-size: 4rem;
-			max-width: 32rem;
-		}
-		&__decision-option {
-			font-size: 4rem;
-		}
-		&__turn-counter {
-			font-size: 4.8rem;
-		}
-		&__result {
-			font-size: 3.2rem;
-		}
-	}
-	.card {
-		width: 12rem;
-		height: 16.8rem;
-	}
-}
-
-@media screen and (min-width: 1919px),
-	(min-height: 1919px) and (orientation: portrait) {
-	.memory-game {
-		&__in-game-screen {
-			padding: 2.4rem;
-		}
-	}
-	.card {
-		width: 13.2rem;
-		height: 18.48rem;
+		height: 6.44rem;
 	}
 }
