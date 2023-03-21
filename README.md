@@ -3,7 +3,6 @@
 ## Questions:
 
 - Why should Id's not be 0 indexed?
-- Shuffle function (sort with Math.random)
 
 - I've noticed my desgins to date have not accounted for the 80px of screen space taken up by the browser search and tab bar - I've never heard about needing to do this but it definitely affects the build....?
 
@@ -11,10 +10,6 @@
   It is a subCategory of the Menu but its content is not related to the menu...
 
 - I've used the difficulty inner HTML to as the value to check in the conditional that selects cards to deal. Is it better practice to create a dataset for this purpose and reference that instead?
-
-### Bash:
-
-- does it bother your eye that the home screen select difficulty and how to play windows are rendered at different heights?
 
 ## Minimum Viable Product (MVP) / Brief:
 
@@ -36,8 +31,8 @@ Include option to view credits in menu.
 
 - Home screen:
 
-  - Heading
-  - subheading
+  - title
+  - subtitle
   - buttons
     - Play Game: Shows select difficulty window
     - How to play: Shows how to play window
@@ -55,7 +50,7 @@ Include option to view credits in menu.
     - selects cards
     - double selection into pairs
     - shuffles cards
-    - delas cards
+    - deals cards
   - close screen button:
     - closes how to play window.
     - re-renders home screen buttons.
@@ -116,6 +111,8 @@ Include option to view credits in menu.
 
 - Consider lives: A limited amount of turns to try match all cards, dictated by difficulty and able to be turned on an off in settings.
 
+- Game playable for users reuiring assistive technology, namely voice readers and users who cannot use a mouse.
+
 ## Design:
 
 - write out design brief and illustration brief, populating each with sourced images.
@@ -165,8 +162,6 @@ I have made this choice as a learning exercise rather than because it is what I 
 
 ## issue list:
 
-- Should clicking menu option a second time remove menu options or just do nothing?
-
 - Moves counter causes layout shift on update.
   solutions tried:
 
@@ -174,35 +169,24 @@ I have made this choice as a learning exercise rather than because it is what I 
 2. Setting justify-self to start and adding a padding of 16rem to the left side of the element. It works but it does not allow for it to have a right side distance of 1.6rem from the page border, as it was designed to be, and as the menu on the opposite side of the screen is.
 3. I've tried using a parent container but cannot seem to resolve the issue even then...
 
-- cards are lagging when loading, exposing front face before game has begun - further image optimisation needed?
-  The problem seems to worsen as more cards need to be loaded.
-  I Have optimised the images and it makes no difference, so it is not a result of image sizing.
-
 - some functions run to create elements at times when they arent needed, then remove functions for those are automatically run to remove them. e.g end of Game and closeWindow. Better to only run homeScreenOptions func when it is needed - using a conditional to control this will likely work.
 
-- Check all spelling and rewrite how to play copy
+- end of game screen neeeds to be redesigned.
 
-- Add a credits section to the game menu
-
-- scale and optimise images for all devices.
+## To Do:
 
 - Bash: I'd like the animals aligned within their cards please.
-
 - Braj: Illustrated border?
-
-- change the image source and size relative to device.
-
-- sizing of cards and --in-game-screen column and row declarations will likely need to be adjusted for each device.
-
-- end of game screen arrives instantly, would prefer it to occur after annimation has completed.
-
-- end of game screen neeeds to be redesigned.
 
 - Refactor all code and seperate both styling and js into different documents depending on its function.
 
 - CSS components for values used multiple times
 
 - CSS mixins for methods used multiple times.
+
+- Refactor readme
+
+- Deploy game
 
 ## Refactor code
 
@@ -272,15 +256,52 @@ src="small.jpg"
 
 - Why have I had to redeclare the font-family so many times, despite having it declared on the html?
 
-- btn: background: none, border: none, cursor: pointer.
-  Declare once, will allow alot of unecessary repetition to be removed.
-
 - why do the two options windows on the home screen render at different heights? Have fixed this with translateY(6vh) on how-to-play-window
 
 #### components for:
 
 color: #372602;
 
-font-sizes: 9.6rem, 5.6rem, 4.8rem, 3.2rem,
+font-sizes:
 
-spacing: 1.6rem
+spacing:
+
+//Mobile Detection
+
+<!-- let isHandHeldDevice;
+let portrait = window.matchMedia("(orientation: portrait)");
+let deviceOrientation = portrait.matches ? "portrait" : "landscape";
+let size = "large";
+
+portrait.addEventListener("change", function (e) {
+	deviceOrientation = e.matches ? "portrait" : "landscape";
+});
+
+if (
+	navigator.userAgent.match(/Android/i) ||
+	navigator.userAgent.match(/webOS/i) ||
+	navigator.userAgent.match(/iPhone/i) ||
+	navigator.userAgent.match(/iPad/i) ||
+	navigator.userAgent.match(/iPod/i) ||
+	navigator.userAgent.match(/BlackBerry/i) ||
+	navigator.userAgent.match(/Windows Phone/i) ||
+	navigator.userAgent.match(/touch/i) ||
+	navigator.userAgent.match(/en-us/i) ||
+	navigator.userAgent.match(/nokia/i) ||
+	navigator.userAgent.match(/aarch/i)
+) {
+	isHandHeldDevice = true;
+} else {
+	isHandHeldDevice = false;
+}
+
+if (isHandHeldDevice) {
+	if (deviceOrientation === "landscape" && window.innerWidth > 1194) {
+		console.log("medium");
+	} else {
+		console.log("small");
+	}
+} else {
+	console.log("large");
+	// size = "large";
+} -->

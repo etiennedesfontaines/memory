@@ -3,102 +3,102 @@ let userCardSelection = [];
 let userCardMatches = [];
 
 const documentBody = document.body;
-// const cardFlipAudio = new Audio("../sounds/card-flip-02.wav");
 const getCards = () => [
 	{
+		//Not using cardName so it can go.
 		cardName: "aardvark",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/aardvark.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/aardvark.png`,
+		altText:"A card-face showing an illustrated, patchwork, plush toy aardvark", //prettier-ignore
 		id: 1,
 	},
 	{
 		cardName: "badger",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/badger.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/badger.png`,
+		altText: "A card-face showing an illustrated, patchwork, plush toy badger",
 		id: 2,
 	},
 	{
 		cardName: "chiwawa",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/chiwawa.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/chiwawa.png`,
+		altText: "A card-face showing an illustrated, patchwork, plush toy chiwawa",
 		id: 3,
 	},
 	{
 		cardName: "duck",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/duck.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/duck.png`,
+		altText: "A card-face showing an illustrated, patchwork, plush toy duck",
 		id: 4,
 	},
 	{
 		cardName: "fox",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/fox.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/fox.png`,
+		altText: "A card-face showing an illustrated, patchwork, plush toy fox",
 		id: 5,
 	},
 	{
 		cardName: "frog",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/frog.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/frog.png`,
+		altText: "A card-face showing an illustrated, patchwork, plush toy frog",
 		id: 6,
 	},
 	{
 		cardName: "highland cow",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/highland-cow.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/highland-cow.png`,
+		altText:"A card-face showing an illustrated, patchwork, plush toy highland cow", //prettier-ignore
 		id: 7,
 	},
 	{
 		cardName: "koala",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/koala.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/koala.png`,
+		altText: "A card-face showing an illustrated, patchwork, plush toy koala",
 		id: 8,
 	},
 	{
 		cardName: "lama",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/lama.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/lama.png`,
+		altText: "A card-face showing an illustrated, patchwork, plush toy lama",
 		id: 9,
 	},
 	{
 		cardName: "monster",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/monster.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/monster.png`,
+		altText: "A card-face showing an illustrated, patchwork, plush toy monster",
 		id: 10,
 	},
 	{
 		cardName: "panda",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/panda.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/panda.png`,
+		altText: "A card-face showing an illustrated, patchwork, plush toy panda",
 		id: 11,
 	},
 	{
 		cardName: "penguin",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/penguin.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/penguin.png`,
+		altText: "A card-face showing an illustrated, patchwork, plush toy penguin",
 		id: 12,
 	},
 	{
 		cardName: "rabbit",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/rabbit.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/rabbit.png`,
+		altText: "A card-face showing an illustrated, patchwork, plush toy rabbit",
 		id: 13,
 	},
 	{
 		cardName: "reindeer",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/reindeer.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/reindeer.png`,
+		altText:"A card-face showing an illustrated, patchwork, plush toy reindeer", //prettier-ignore
 		id: 14,
 	},
 	{
 		cardName: "scotty",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/scotty.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/scotty.png`,
+		altText:"A card-face showing an illustrated, patchwork, plush toy scotty dog", //prettier-ignore
 		id: 15,
 	},
 	{
 		cardName: "teddy",
-		faceImage:
-			"../images/small/illustrations/card-decks/patchwork-animals/teddy.png",
+		faceImage: `../images/illustrations/card-decks/patchwork-animals/teddy.png`,
+		altText:"A card-face showing an illustrated, patchwork, plush toy teddy bear", //prettier-ignore
 		id: 16,
 	},
 ];
@@ -132,15 +132,10 @@ const renderEndOfGameWindow = (homeScreen) => {
 	const declineOption = document.createElement("btn");
 
 	endOfGameWindow.classList.add("memory-game__end-of-game-window", "window");
-	heading.classList.add(
-		"memory-game__heading",
-		"memory-game__heading--end-of-game"
-	);
+	//The two headings below get the same classList
+	heading.classList.add("memory-game__heading","memory-game__heading--end-of-game"); //prettier-ignore
 	result.classList.add("memory-game__result");
-	optionsHeading.classList.add(
-		"memory-game__heading",
-		"memory-game__heading--end-of-game"
-	);
+	optionsHeading.classList.add("memory-game__heading","memory-game__heading--end-of-game"); //prettier-ignore
 	confirmOption.classList.add("memory-game__decision-option","memory-game__decision-option--confirm"); //prettier-ignore
 	declineOption.classList.add("memory-game__decision-option");
 
@@ -199,24 +194,35 @@ const closeMenu = (menu, ...args) => {
 };
 
 const renderMenuOptions = (menu, inGameScreen) => {
+	const closeMenuButton = document.createElement("btn");
 	const menuOptions = document.createElement("ul");
 	const newGameOption = document.createElement("li");
 	const howToPlayOption = document.createElement("li");
+	const creditsOption = document.createElement("li");
 	const quiteGameOption = document.createElement("li");
-	const closeMenuButton = document.createElement("btn");
 
-	menuOptions.classList.add("memory-game__menu-options");
-	newGameOption.classList.add("memory-game__menu-option");
-	howToPlayOption.classList.add("memory-game__menu-option");
-	quiteGameOption.classList.add("memory-game__menu-option");
 	closeMenuButton.classList.add("memory-game__close-btn", "memory-game__close-btn--game-menu"); //prettier-ignore
+	[newGameOption, howToPlayOption, creditsOption, quiteGameOption].forEach(
+		(option) => option.classList.add("memory-game__menu-option")
+	);
+	menuOptions.classList.add("memory-game__menu-options");
+	// newGameOption.classList.add("memory-game__menu-option");
+	// howToPlayOption.classList.add("memory-game__menu-option");
+	// creditsOption.classList.add("memory-game__menu-option");
+	// quiteGameOption.classList.add("memory-game__menu-option");
 
+	closeMenuButton.innerHTML = "x";
 	newGameOption.innerHTML = "New Game";
 	howToPlayOption.innerHTML = "How to play?";
+	creditsOption.innerHTML = "Credits";
 	quiteGameOption.innerHTML = "Quit";
-	closeMenuButton.innerHTML = "x";
 
-	menuOptions.append(newGameOption, howToPlayOption, quiteGameOption);
+	menuOptions.append(
+		newGameOption,
+		howToPlayOption,
+		creditsOption,
+		quiteGameOption
+	);
 	menu.append(closeMenuButton, menuOptions);
 
 	//functionality
@@ -268,11 +274,54 @@ const renderMenuOptions = (menu, inGameScreen) => {
 			const memoryGame = document.querySelector(".memory-game");
 			const inGameScreen = document.querySelector(".memory-game__in-game-screen"); //prettier-ignore
 			inGameScreen.remove();
-			renderHomeScreen(memoryGame);
+			renderHomeScreen(memoryGame, false);
 			const homeScreen = document.querySelector(".memory-game__home-screen");
-			removeHomeScreenOptions();
 			positionBanner();
 			renderDifficultyOptions(homeScreen);
+		});
+	});
+
+	creditsOption.addEventListener("click", () => {
+		const creditsWindow = document.createElement("div");
+		const closeWindowButton = document.createElement("button");
+		const heading = document.createElement("h3");
+		const contributorList = document.createElement("ul");
+		const contributorListItem1 = document.createElement("li");
+		const contributorListItem2 = document.createElement("li");
+		const contributorListItem3 = document.createElement("li");
+
+		closeWindowButton.innerHTML = "x";
+		heading.innerHTML = "Contributors:";
+		contributorListItem1.innerHTML = `<a href="">Etienne Desfontaines</a> <ul> <li>- Ideation</li> <li>- Design</li> <li>- Development</li></ul>`;
+		contributorListItem2.innerHTML = `<a href="https://www.instagram.com/plants_and_paper/?hl=en">Pascale Desfontaines</a> <ul> <li>- Ideation</li></ul>`;
+		contributorListItem3.innerHTML = `<a href="https://www.behance.net/bastiendesfont">Bastien Desfontaines</a> <ul> <li>- Ideation assist</li> <li>- Design assist</li> <li>- Image treatment</li></ul>`;
+
+		creditsWindow.classList.add("memory-game__how-to-play-window","memory-game__how-to-play-window--game-menu"); //prettier-ignore
+		closeWindowButton.classList.add("memory-game__close-btn","memory-game__close-btn--how-to-play-game-menu"); //prettier-ignore
+		heading.classList.add("memory-game__heading", "memory-game__heading--game-menu") //prettier-ignore
+		contributorList.classList.add("memory-game__contributor__list");
+
+		closeMenu(
+			menu,
+			"memory-game__menu-heading memory-game__menu-heading--menu-open",
+			"memory-game__close-btn memory-game__close-btn--game-menu"
+		);
+
+		contributorList.append(
+			contributorListItem1,
+			contributorListItem2,
+			contributorListItem3
+		);
+		creditsWindow.append(closeWindowButton, heading, contributorList);
+		menu.append(creditsWindow);
+
+		closeWindowButton.addEventListener("click", () => {
+			closeMenu(
+				menu,
+				"memory-game__menu-heading memory-game__menu-heading--menu-open",
+				"memory-game__close-btn memory-game__close-btn--game-menu"
+			);
+			renderMenuOptions(menu);
 		});
 	});
 
@@ -372,17 +421,6 @@ const newGame = (difficulty, homeScreen) => {
 	cardContainer.classList.add("memory-game__card-container");
 	turnCounter.classList.add("memory-game__turn-counter");
 
-	// if (difficulty === "Easy") {
-	// 	cardContainer.classList.add("memory-game__card-container--difficulty-easy");
-	// 	// cardContainer.classList.add("memory-game__in-game-screen--difficulty-easy");
-	// } else if (difficulty === "Medium") {
-	// 	cardContainer.classList.add("memory-game__card-container--difficulty-medium"); //prettier-ignore
-	// 	// cardContainer.classList.add("memory-game__in-game-screen--difficulty-medium"); //prettier-ignore
-	// } else if (difficulty === "Hard") {
-	// 	cardContainer.classList.add("memory-game__card-container--difficulty-hard");
-	// 	// cardContainer.classList.add("memory-game__in-game-screen--difficulty-hard");
-	// }
-
 	menuHeading.innerHTML = "Menu";
 	turnCounter.innerHTML = `Moves: ${turnCount}`;
 
@@ -403,7 +441,9 @@ const newGame = (difficulty, homeScreen) => {
 
 		card.dataset.id = crd.id;
 		cardFace.src = crd.faceImage;
-		cardBack.src = "../images/small/illustrations/card-decks/patchwork-animals/card-back.png"; //prettier-ignore
+		cardFace.alt = crd.altText;
+		cardBack.src = `../images/illustrations/card-decks/patchwork-animals/card-back.png`;
+		cardBack.alt = "illustration of a card back with a patchwork quilt pattern";
 
 		card.append(cardFace, cardBack);
 		cardContainer.appendChild(card);
@@ -414,7 +454,7 @@ const newGame = (difficulty, homeScreen) => {
 			// cardFlipAudio.play();
 			card.style.animation = "none";
 			card.offsetHeight;
-			card.style.animation = "flipCard 1 1s forwards normal";
+			card.style.animation = "flipCard 1 900ms forwards normal";
 			card.classList.toggle("card--flipped");
 
 			userCardSelection.push(card);
@@ -445,20 +485,20 @@ const newGame = (difficulty, homeScreen) => {
 							card.classList.toggle("card--flipped");
 							card.style.animation = "none";
 							card.offsetHeight;
-							card.style.animation = "flipCard 1 1s forwards reverse";
+							card.style.animation = "flipCard 1 900ms forwards reverse";
 							card.addEventListener("animationend", reEnableClickEvent);
 						});
 						userCardSelection = [];
 					}
-				}, "1500");
-				if (userCardMatches.length === cards.length) {
-					inGameScreen.remove();
-					renderHomeScreen(memoryGame);
-					const homeScreen = document.querySelector(".memory-game__home-screen"); //prettier-ignore
-					removeHomeScreenOptions(homeScreen);
-					positionBanner();
-					renderEndOfGameWindow(homeScreen);
-				}
+					if (userCardMatches.length === cards.length) {
+						inGameScreen.remove();
+						renderHomeScreen(memoryGame, false);
+						const homeScreen = document.querySelector(".memory-game__home-screen"); //prettier-ignore
+						// removeHomeScreenOptions(homeScreen);
+						positionBanner();
+						renderEndOfGameWindow(homeScreen);
+					}
+				}, "1200");
 			}
 		});
 	});
@@ -595,7 +635,7 @@ const renderHomeScreenOptions = (homeScreen) => {
 	});
 };
 
-const renderHomeScreen = (memoryGame) => {
+const renderHomeScreen = (memoryGame, renderOptions = true) => {
 	const homeScreen = document.createElement("div");
 	const banner = document.createElement("div");
 	const title = document.createElement("h1");
@@ -608,10 +648,9 @@ const renderHomeScreen = (memoryGame) => {
 
 	title.innerHTML = "MemorY";
 	subtitle.innerHTML = "A gAme for your whOle Brain";
-
-	//renderHomeScreenOptions needs to be in a condition
-	// that does not call when rendering home screen at end of game
-	renderHomeScreenOptions(homeScreen);
+	if (renderOptions) {
+		renderHomeScreenOptions(homeScreen);
+	}
 
 	banner.append(title, subtitle);
 	homeScreen.append(banner);
@@ -629,4 +668,5 @@ const renderMemoryGame = () => {
 
 window.onload = () => {
 	renderMemoryGame();
+	// getCards()
 };
