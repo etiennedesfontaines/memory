@@ -285,8 +285,8 @@ const renderMenuOptions = (menu, inGameScreen) => {
 		closeWindowButton.innerHTML = "x";
 		heading.innerHTML = "Contributors:";
 		contributorListItem1.innerHTML = `<a href="">Etienne Desfontaines</a> <ul> <li>- Ideation</li> <li>- Design</li> <li>- Development</li></ul>`;
-		contributorListItem2.innerHTML = `<a href="https://www.instagram.com/plants_and_paper/?hl=en">Pascale Desfontaines</a> <ul> <li>- Ideation</li></ul>`;
-		contributorListItem3.innerHTML = `<a href="https://www.behance.net/bastiendesfont">Bastien Desfontaines</a> <ul> <li>- Ideation assist</li> <li>- Design assist</li> <li>- Image treatment</li></ul>`;
+		contributorListItem2.innerHTML = `<a href="https://www.instagram.com/plants_and_paper/?hl=en" target="_blank" >Pascale Desfontaines</a> <ul> <li>- Ideation</li></ul>`;
+		contributorListItem3.innerHTML = `<a href="https://www.behance.net/bastiendesfont" target="_blank" >Bastien Desfontaines</a> <ul> <li>- Ideation assist</li> <li>- Design assist</li> <li>- Image treatment</li></ul>`;
 
 		creditsWindow.classList.add("memory-game__how-to-play-window","memory-game__how-to-play-window--game-menu"); //prettier-ignore
 		closeWindowButton.classList.add("memory-game__close-btn","memory-game__close-btn--how-to-play-game-menu"); //prettier-ignore
@@ -397,6 +397,7 @@ const renderMenuOptions = (menu, inGameScreen) => {
 };
 
 const newGame = (difficulty, homeScreen) => {
+	turnCount = 0;
 	const memoryGame = document.querySelector(".memory-game");
 	const inGameScreen = document.createElement("div");
 	const menu = document.createElement("div");
@@ -444,8 +445,6 @@ const newGame = (difficulty, homeScreen) => {
 		// functionality
 		card.addEventListener("click", () => {
 			card.style.animation = "none";
-			//Hack to force browser to apply style changes made to card before executing next line of code -
-			// necessary due to JS being asynchronous
 			card.offsetHeight;
 			card.style.animation = "flipCard 1 900ms forwards normal";
 			card.classList.toggle("card--flipped");
