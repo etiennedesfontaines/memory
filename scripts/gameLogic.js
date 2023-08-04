@@ -1,5 +1,1 @@
-// const myFunction = () => {
-// 	console.log("cat shoes");
-// };
-
-// export default myFunction;
+//A file to seperate the game logic into
