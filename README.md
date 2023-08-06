@@ -43,8 +43,6 @@ However, my previous build ([TwoAngels](https://github.com/etiennedesfontaines/T
 
 ### My process
 
-This documentation only concerns itself with my development process in this project, not the other roles I was responsibe for.
-
 Task: Design and build a digital version of the card game "memory."
 
 #### Mimimum Viable Product (MVP):
